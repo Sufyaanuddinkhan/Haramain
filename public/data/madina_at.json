@@ -6,7 +6,7 @@
       "fullDescription": "Dar al-Madinah is a modern museum opened in 2011 that traces the history and heritage of Medina&#8203;:contentReference[oaicite:17]{index=17}. Exhibits include life-size models of Masjid an-Nabawi, the Prophet’s homelands, rare manuscripts, and artifacts related to early Islamic culture. Organized chronologically, the museum displays Medina’s urban development from the 7th century onward. It is considered the city’s first specialized heritage museum, aiming to educate visitors on Medina’s legacy through interactive exhibits.",
       "image": "",
       "heroImage": "",
-      "gallery": []
+      "gallery": ["../images/madina.jpeg"]
     },
     {
       "id": "hejaz-railway-station",

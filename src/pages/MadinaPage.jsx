@@ -23,6 +23,8 @@ const MadinaPage = () => {
         title="Welcome to Madina!"
         subtitle="The sacred heart of Islam, The Prophet's City (مدينة النبي)"
         backgroundImage={madinaBg}
+        hadithText="Medina is a sanctuary from that place to that. Its trees should not be cut and no heresy should be innovated nor any sin should be committed in it, and whoever innovates in it an heresy or commits sins (bad deeds), then he will incur the curse of Allah, the angels, and all the people."
+        hadithSource="Sahih al-Bukhari 1867"
       />
 
       {/* Sticky Secondary Navigation */}

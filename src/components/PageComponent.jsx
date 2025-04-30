@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 // import { HiOutlineMail } from "react-icons/hi"; // Icon for email
 import { motion } from "framer-motion";  // Import Framer Motion for animations
  
-import { useNavigate } from "react-router-dom";
 //MAKKAH AND MADINA herosection
-export const HeroSection = ({ title, subtitle, backgroundImage }) => {
+
+export const HeroSection = ({
+  title,
+  subtitle,
+  backgroundImage,
+  hadithText,
+  hadithSource,
+}) => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -17,7 +23,7 @@ export const HeroSection = ({ title, subtitle, backgroundImage }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const heroHeight = typeof window !== "undefined" ? window.innerHeight * 0.8 : 600; // fallback for SSR
+  const heroHeight = typeof window !== "undefined" ? window.innerHeight * 0.8 : 600;
   const cappedScroll = Math.min(scrollY, heroHeight);
   const translateY = cappedScroll;
   const opacity = 1 - cappedScroll / heroHeight;
@@ -32,7 +38,6 @@ export const HeroSection = ({ title, subtitle, backgroundImage }) => {
     >
       <div className="absolute inset-0 bg-black/50 z-0" />
 
-      {/* Parallax scroll effect text */}
       <div
         className="absolute top-10 left-1/2 z-10 max-w-3xl w-[90%] text-center px-4"
         style={{
@@ -42,10 +47,23 @@ export const HeroSection = ({ title, subtitle, backgroundImage }) => {
       >
         <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
         <p className="text-lg md:text-xl">{subtitle}</p>
+
+        {/* Dynamic Hadith Section */}
+        {hadithText && (
+          <div className="mt-8 bg-white/30 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-lg">
+            <p className="text-sm md:text-base italic text-white leading-relaxed">
+              “{hadithText}”
+              {hadithSource && (
+                <span className="text-sm block mt-2 text-gray-200">– {hadithSource}</span>
+              )}
+            </p>
+          </div>
+        )}
       </div>
     </motion.div>
   );
 };
+
 //homepage card
 export const Card = ({
   image,

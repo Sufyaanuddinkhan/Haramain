@@ -24,6 +24,8 @@ const MakkahPage = () => {
       <HeroSection
         title="Welcome to Makkah!"
         subtitle="The sacred heart of Islam, home to the Kaaba"
+         hadithText="“By Allah, you are the best and most beloved land to Allah. Had I not been driven away from you, I would not have left you.”"
+          hadithSource="Sunan al-Tirmidhī 3925"
         backgroundImage={makkahBg}
       />
 
