@@ -1,22 +1,81 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { Menu, X } from "lucide-react"; // optional: you can use icons of your choice
+import { motion } from "framer-motion"; // Import Framer Motion
+import Logo from '../assets/DarkLogocUT.png'
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const navLinkClass = ({ isActive }) =>
-    isActive ? "underline text-yellow-500" : "hover:text-gray-400";
+    isActive ? "text-yellow-500 underline" : "hover:text-yellow-400";
+
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-black shadow-md sticky top-0 z-50">
-      <div className="w-full px-6 py-8 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-yellow-600">Next Stop: Haram</h1>
-        <ul className="flex gap-6 text-white font-medium">
-          <NavLink to="/" className={navLinkClass}>Home</NavLink>
-          <NavLink to="/makkah" className={navLinkClass}>Makkah</NavLink>
-          <NavLink to="/madina" className={navLinkClass}>Madina</NavLink>
-          {/* <NavLink to="#" className="hover:text-gray-400">Guide</NavLink> */}
-          <NavLink to="/" className="hover:text-gray-400">About</NavLink>
+    <nav className="bg-black bg-opacity-80 shadow-md sticky top-0 z-50 py-2">
+      <div className="w-full px-6 py-4 flex justify-between items-center">
+        {/* Logo on the left */}
+        <img src={Logo} alt="Logo" className="h-10 w-auto" />
+
+        {/* Desktop Links in center */}
+        <ul className="hidden md:flex gap-6 text-white font-medium mx-auto">
+          {["Home", "Makkah", "Madina", "Hajj", "Umrah", "About"].map((link) => (
+            <motion.li
+              key={link}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <NavLink to={`/${link.toLowerCase()}`} className={navLinkClass}>
+                {link}
+              </NavLink>
+            </motion.li>
+          ))}
         </ul>
+
+        {/* Contact Us button on the right */}
+        <div className="hidden md:block">
+          <button className="text-white hover:scale-110 transition-transform">
+            Contact Us
+          </button>
+        </div>
+
+        {/* Mobile Hamburger Icon */}
+        <div className="md:hidden text-white">
+          <button onClick={toggleMenu}>
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      <motion.div
+        className="md:hidden px-6 pb-4"
+        initial={{ x: "-100%" }} // Start off-screen
+        animate={{ x: isOpen ? 0 : "-100%" }} // Slide in/out
+        transition={{ type: "spring", stiffness: 200 }}
+      >
+        {isOpen && (
+          <ul className="flex flex-col gap-4 text-white font-medium">
+            {["Home", "Makkah", "Madina", "Hajj", "Umrah", "Aboutus"].map((link) => (
+              <motion.li
+                key={link}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1 }}
+              >
+                <NavLink
+                  to={`/${link.toLowerCase()}`}
+                  className={navLinkClass}
+                  onClick={toggleMenu}
+                >
+                  {link}
+                </NavLink>
+              </motion.li>
+            ))}
+          </ul>
+        )}
+      </motion.div>
     </nav>
   );
 };

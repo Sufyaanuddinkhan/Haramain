@@ -1,0 +1,7 @@
+req middileware==>controls the  controller (protects the routes )
+json web tokens creted to avoid loginning again and again its like a pass and if the user is verified we will give him a pass(token) for particulat time
+jwt is package 
+payload contains the data of user after authentication 
+jwt.sign(payload,secretkey,expiry)//generates the token and saves to localstorage or session or cookies
+jwt.verify(token,process.envsecretkey,(err,decoded)) // whenever the user visits the sites it verifies the previously generated token if the things matches then the user no need to login and if the token doesntmatch or expire need to login again 
+//morgan used as a logger

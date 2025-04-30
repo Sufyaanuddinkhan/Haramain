@@ -1,0 +1,76 @@
+[
+    {
+      "id": "masjid-quba",
+      "title": "Masjid Quba",
+      "shortDescription": "The first mosque ever built, on the outskirts of early Medina, founded by Prophet Muhammad ﷺ in 622 CE.",
+      "fullDescription": "Masjid Quba was established when Muhammad ﷺ stopped in the village of Quba during the Hijrah (migration to Medina) in 622 CE. He personally laid its foundation and prayed there. Visiting Quba is highly meritorious: hadiths note that praying two rakʿahs here equals one Umrah. Over the centuries it has been enlarged and reconstructed; today’s white modern complex covers the original area and includes large prayer halls with many arches and domes.",
+      "image": "",
+      "heroImage": "",
+      "gallery": []
+    },
+    {
+      "id": "masjid-qiblatain",
+      "title": "Masjid al-Qiblatayn",
+      "shortDescription": "The Mosque of the Two Qiblas, where in 623 CE the Prophet received revelation to change the prayer direction from Jerusalem to Mecca.",
+      "fullDescription": "Masjid al-Qiblatayn is renowned as the site where Muhammad ﷺ, while leading midday prayers, was instructed to turn toward the Kaaba in Mecca instead of Jerusalem. The original 7th-century mosque had two mihrabs (prayer niches) to mark both qiblas. In 1987, King Fahd had the mosque rebuilt; the old mihrab facing Jerusalem was removed, leaving only the Mecca-facing niche. The modern mosque has two small domes and twin minarets, and nearby plaques note the historic qibla change.",
+      "image": "",
+      "heroImage": "",
+      "gallery": []
+    },
+    {
+      "id": "jannat-al-baqi",
+      "title": "Jannat al-Baqiʿ",
+      "shortDescription": "The oldest Islamic cemetery in Medina, adjacent to the Prophet’s Mosque, where many of Muhammad’s family and companions are buried&#8203;:contentReference[oaicite:3]{index=3}.",
+      "fullDescription": "Jannat al-Baqiʿ is the historic graveyard east of Masjid an-Nabawi. It contains the unmarked graves of many of the Prophet’s family and companions: for example, the Prophet’s wives (Zainab bint Jahsh, Umm Salama, etc.), daughters, and many Sahaba including Caliphs Uthman and Hasan, and ʿAlqama ibn Mughira. It is also called Baqīʿ al-Gharqad (Cemetery of the Boxthorn)&#8203;:contentReference[oaicite:4]{index=4}. All grave markers and structures were demolished in 1926 (1344 AH) by the Saudi authorities, but pilgrims venerate the site by prayer and reflection at its simple enclosures.",
+      "image": "",
+      "heroImage": "",
+      "gallery": []
+    },
+    {
+      "id": "mount-uhud",
+      "title": "Mount Uhud",
+      "shortDescription": "A mountain north of Medina (height 1,077 m) and the site of the Battle of Uhud in 625 CE&#8203;:contentReference[oaicite:5]{index=5}.",
+      "fullDescription": "Mount Uhud (Jabal Uḥud) is a rugged ridge just north of Medina where the second great battle between Muslims and Quraysh occurred on 19 March 625 CE&#8203;:contentReference[oaicite:6]{index=6}. In this battle many Muslims died, including the Prophet’s uncle Hamza, who was martyred by an enemy archer&#8203;:contentReference[oaicite:7]{index=7}. Today the site includes a small mosque (Sayyid Ash-Shuhadāʾ) and memorial at the foot of the mountain where Hamza is buried. Pilgrims visit to stand on the battlefield slopes and reflect on the sacrifices made.",
+      "image": "",
+      "heroImage": "",
+      "gallery": []
+    },
+    {
+      "id": "masjid-al-fath",
+      "title": "Masjid al-Fatḥ",
+      "shortDescription": "Also called the Victory Mosque, located on Mount Salaʿ; here the Prophet ﷺ prayed against the confederate army (Battle of the Trench) and Allah sent a wind to overturn the enemy’s camp&#8203;:contentReference[oaicite:8]{index=8}.",
+      "fullDescription": "Masjid al-Fatḥ (Mosque of Victory) stands atop Mount Salaʿ. Its significance dates to the Battle of the Trench (627 CE) when the Prophet ﷺ prayed here asking for Allah’s help against the confederate siege. In response, a fierce windstorm blew away the enemy tents and equipment, ensuring a Muslim victory&#8203;:contentReference[oaicite:9]{index=9}. The mosque was named from a verse of victory revealed at that time. Originally built by early caliphs, it was later rebuilt multiple times (notably by Sultan al-Ghāzī in the 14th century). Today visitors honor the site where divine intervention occurred.",
+      "image": "",
+      "heroImage": "",
+      "gallery": []
+    },
+    {
+      "id": "masjid-al-ghamama",
+      "title": "Masjid al-Ghamamah",
+      "shortDescription": "The Rain Mosque – an open courtyard north of Masjid al-Nabawi, named for the cloud that brought rain as the Prophet ﷺ prayed here&#8203;:contentReference[oaicite:10]{index=10}.",
+      "fullDescription": "Masjid al-Ghamāmah (Cloud Mosque) lies just outside the Prophet’s Mosque near Bab as-Salam. The name refers to a cloud that formed overhead and sent rain during a prayer held by Muhammad ﷺ when Medina was in drought&#8203;:contentReference[oaicite:11]{index=11}. Tradition also records that Eid prayers were offered here to accommodate overflow worshippers. The site is now an open courtyard with a small perimeter wall, and pilgrims visit to recall the blessings of the Prophet’s rain prayer.",
+      "fullDescription2": "Masjid al-Ghamāmah (Cloud Mosque) lies just outside the Prophet’s Mosque near Bab as-Salam. The name refers to a cloud that formed overhead and sent rain during a prayer held by Muhammad ﷺ when Medina was in drought&#8203;:contentReference[oaicite:11]{index=11}. Tradition also records that Eid prayers were offered here to accommodate overflow worshippers. The site is now an open courtyard with a small perimeter wall, and pilgrims visit to recall the blessings of the Prophet’s rain prayer.",
+      "image": "",
+      "heroImage": "",
+      "gallery": []
+    },
+    {
+      "id": "masjid-al-ijabah",
+      "title": "Masjid al-Ijābah",
+      "shortDescription": "The Mosque of Answered Prayers, where Muhammad ﷺ prayed two rakʿahs and made supplications that were answered (rain and famine relief)&#8203;:contentReference[oaicite:12]{index=12}.",
+      "fullDescription": "Masjid al-Ijābah (also called Bani Muawiyah Mosque) is located in the heart of Medina. Here Muhammad ﷺ once prayed two rakʿahs and then related three wishes he had asked from Allah. According to hadith, two of those wishes (rain and relief from famine) were granted&#8203;:contentReference[oaicite:13]{index=13}. Because his prayers were answered at this spot, the mosque’s name means “Answered.” The original structure dates to the Prophet’s time; it has been rebuilt and the current modest mosque now commemorates this story of divine response to prayer.",
+      "image": "",
+      "heroImage": "",
+      "gallery": []
+    },
+    {
+      "id": "well-of-uthman",
+      "title": "Well of Uthman (Bir ʿUthmān)",
+      "shortDescription": "A historic well in Medina that was bought by Caliph Uthman ibn Affan from its owner (a Jewish man named Rumah) for public use&#8203;:contentReference[oaicite:14]{index=14}.",
+      "fullDescription": "The Well of Uthman (Bir Uthmān, also called Bir Rumah) was a medieval water source in Medina. It originally belonged to a Jew named Rumah. During the Prophet’s era it was Medina’s main fresh well. Caliph Uthman ibn Affan later purchased it at great expense to provide free water for the city’s inhabitants&#8203;:contentReference[oaicite:15]{index=15}. The site, now memorialized, exemplifies early Muslim efforts to serve the community. A monument or park sometimes marks its location for visitors.",
+      "image": "",
+      "heroImage": "",
+      "gallery": []
+    }
+  ]
+  

@@ -2,29 +2,40 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Hero from './components/Hero';
-import ExploreSection from './ExploreSection';
+import {HomePage} from './pages/HomePage';
 
 import MakkahPage from './pages/MakkahPage';
 import MadinaPage from './pages/MadinaPage';
-import HeartSoulSection from './pages/HomePage';
-
+import HajjPage  from './pages/Hajj'
+import Umrah from './pages/Umrah';
+import Aboutus  from "./pages/AboutUs";
+import ScrollToTop from '../src/Utils/ScrollToTop';
+import Test from "./components/ImageTextSectionTest.jsx"
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={
+        <Route path="/home" element={  
           <>
-            <Hero />
-            <ExploreSection />
-            <HeartSoulSection />
+          <HomePage />
+           
+          </>
+        } />
+        <Route path="/" element={  
+          <>
+          <HomePage />
+           
           </>
         } />
         <Route path="/makkah" element={<MakkahPage />} />
         <Route path="/madina" element={<MadinaPage />} />
+        <Route path="/hajj" element={<HajjPage />} />
+        <Route path="/umrah" element={<Umrah />} />
+        <Route path="/About" element={<Aboutus />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
-     
+      <ScrollToTop />
       <Footer />
     </>
   );

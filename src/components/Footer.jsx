@@ -21,12 +21,12 @@ const Footer = () => {
               <a href="#" className="hover:text-gray-400">
                 <FaInstagram size={30} />
               </a>
-              <a href="#" className="hover:text-gray-400">
+              {/* <a href="#" className="hover:text-gray-400">
                 <FaGithub size={30} />
               </a>
               <a href="#" className="hover:text-gray-400">
                 <FaLinkedin size={30} />
-              </a>
+              </a> */}
             </div>
           </div>
 
@@ -38,10 +38,10 @@ const Footer = () => {
                 <a href="/" className="hover:text-gray-400">Home</a>
               </li>
               <li>
-                <a href="/#makkah" className="hover:text-gray-400">Makkah</a>
+                <a href="/makkah" className="hover:text-gray-400">Makkah</a>
               </li>
               <li>
-                <a href="/#madina" className="hover:text-gray-400">Madina</a>
+                <a href="/madina" className="hover:text-gray-400">Madina</a>
               </li>
               <li>
                 <a href="/guide" className="hover:text-gray-400">Travel Guide</a>
