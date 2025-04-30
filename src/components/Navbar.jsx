@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu, X } from "lucide-react"; // optional: you can use icons of your choice
-import { motion } from "framer-motion"; // Import Framer Motion
-import Logo from '../assets/DarkLogocUT.png'
+import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="bg-black bg-opacity-80 shadow-md sticky top-0 z-50 py-2">
       <div className="w-full px-6 py-4 flex justify-between items-center">
         {/* Logo on the left */}
-        <img src={Logo} alt="Logo" className="h-10 w-auto" />
+        <img src="images/DarkLogocUT.PNG" alt="Logo" className="h-10 w-auto" />
 
         {/* Desktop Links in center */}
         <ul className="hidden md:flex gap-6 text-white font-medium mx-auto">
@@ -51,8 +51,8 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <motion.div
         className="md:hidden px-6 pb-4"
-        initial={{ x: "-100%" }} // Start off-screen
-        animate={{ x: isOpen ? 0 : "-100%" }} // Slide in/out
+        initial={{ x: "-100%" }}
+        animate={{ x: isOpen ? 0 : "-100%" }}
         transition={{ type: "spring", stiffness: 200 }}
       >
         {isOpen && (

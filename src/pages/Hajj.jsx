@@ -1,34 +1,98 @@
-//updated 
-
 import React, { useState, useRef, useEffect } from "react";
 import { HeroSection } from "../components/PageComponent.jsx";
-import hajjBanner from "../assets/makkah/rp/kaaba.jpg";
-import ihram from "../assets/hajj/ihram.jpg";
-import prohibited from "../assets/hajj/prohibited_act.png";
-import arrival_makkah from "../assets/hajj/arrival_makkah.webp";
-import safa_marwa from "../assets/hajj/safa_marwa.jpg";
-import traveling_mina from "../assets/hajj/travelling_Mina.webp";
-import arafat from "../assets/hajj/arafat.jpg";
-import muzdalifah from "../assets/hajj/muzdalifah.jpeg";
-import al_jamarat from "../assets/hajj/al_jamarat.jpeg";
-import shaving from "../assets/hajj/shaving_head.jpeg";
-import main_tawaf from "../assets/hajj/main_tawaf.jpg";
-import al_wada from "../assets/hajj/al_wada.jpeg";
 
 const hajjSteps = [
-  { title: "Step 1: Preparation and Intention (Niyyah)", image: hajjBanner, content: ["Before setting off, pilgrims should ensure they meet all financial, physical, and legal requirements for Hajj.", "It is advised to seek forgiveness, pay off debts, and reconcile with others before embarking on the journey.", "Pilgrims must intend niyyah to perform Hajj sincerely for Allah."] },
-  { title: "Step 2: Ihram", image: ihram, content: ["Ihram is a sacred state of purity that begins at designated Miqat points.", "Men wear two white, unstitched clothes; women wear modest attire.", "Talbiyah is recited:", "Labbayk Allahumma labbayk..."] },
-  { title: "Step 3: Prohibited Acts In Ihram", image: prohibited, content: ["Avoid shaving, cutting nails, perfume, marital relations, and conflict."] },
-  { title: "Step 4: Arrival in Makkah and Tawaf", image: arrival_makkah, content: ["Perform Tawaf al-Qudum around the Kaaba.", "Offer two Rak’ahs of prayer near Maqam Ibrahim."] },
-  { title: "Step 5: Sa’i", image: safa_marwa, content: ["Walk seven times between Safa and Marwah, recalling Hajar's devotion."] },
-  { title: "Step 6: Travel to Mina", image: traveling_mina, content: ["Stay in tents in Mina for prayer and reflection."] },
-  { title: "Step 7: Day of Arafat", image: arafat, content: ["Stand in Arafat, seek forgiveness and listen to the Khutbah."] },
-  { title: "Step 8: Muzdalifah", image: muzdalifah, content: ["Collect pebbles and sleep under the stars."] },
-  { title: "Step 9: Stoning", image: al_jamarat, content: ["Throw pebbles at the pillars representing Satan."] },
-  { title: "Step 10: Shaving", image: shaving, content: ["Men shave heads; women cut a small portion of hair."] },
-  { title: "Step 11: Tawaf al-Ifadah", image: main_tawaf, content: ["Perform Tawaf and Sa’i to complete major rites."] },
-  { title: "Step 12: Farewell Tawaf", image: al_wada, content: ["Perform Tawaf al-Wada before departing Makkah."] }
+  { 
+    title: "Step 1: Preparation and Intention (Niyyah)", 
+    image: "/images/hajj/kaaba.jpg", 
+    content: [
+      "Before setting off, pilgrims should ensure they meet all financial, physical, and legal requirements for Hajj.",
+      "It is advised to seek forgiveness, pay off debts, and reconcile with others before embarking on the journey.",
+      "Pilgrims must intend niyyah to perform Hajj sincerely for Allah."
+    ] 
+  },
+  { 
+    title: "Step 2: Ihram", 
+    image: "/images/hajj/ihram.jpg", 
+    content: [
+      "Ihram is a sacred state of purity that begins at designated Miqat points.",
+      "Men wear two white, unstitched clothes; women wear modest attire.",
+      "Talbiyah is recited: Labbayk Allahumma labbayk..."
+    ] 
+  },
+  { 
+    title: "Step 3: Prohibited Acts In Ihram", 
+    image: "/images/hajj/prohibited_act.png", 
+    content: [
+      "Avoid shaving, cutting nails, perfume, marital relations, and conflict."
+    ] 
+  },
+  { 
+    title: "Step 4: Arrival in Makkah and Tawaf", 
+    image: "/images/hajj/arrival_makkah.webp", 
+    content: [
+      "Perform Tawaf al-Qudum around the Kaaba.",
+      "Offer two Rak’ahs of prayer near Maqam Ibrahim."
+    ] 
+  },
+  { 
+    title: "Step 5: Sa’i", 
+    image: "/images/hajj/safa_marwa.jpg", 
+    content: [
+      "Walk seven times between Safa and Marwah, recalling Hajar's devotion."
+    ] 
+  },
+  { 
+    title: "Step 6: Travel to Mina", 
+    image: "/images/hajj/travelling_Mina.webp", 
+    content: [
+      "Stay in tents in Mina for prayer and reflection."
+    ] 
+  },
+  { 
+    title: "Step 7: Day of Arafat", 
+    image: "/images/hajj/arafat.jpg", 
+    content: [
+      "Stand in Arafat, seek forgiveness and listen to the Khutbah."
+    ] 
+  },
+  { 
+    title: "Step 8: Muzdalifah", 
+    image: "/images/hajj/muzdalifah.jpeg", 
+    content: [
+      "Collect pebbles and sleep under the stars."
+    ] 
+  },
+  { 
+    title: "Step 9: Stoning", 
+    image: "/images/hajj/al_jamarat.jpeg", 
+    content: [
+      "Throw pebbles at the pillars representing Satan."
+    ] 
+  },
+  { 
+    title: "Step 10: Shaving", 
+    image: "/images/hajj/shaving_head.jpeg", 
+    content: [
+      "Men shave heads; women cut a small portion of hair."
+    ] 
+  },
+  { 
+    title: "Step 11: Tawaf al-Ifadah", 
+    image: "/images/hajj/main_tawaf.jpg", 
+    content: [
+      "Perform Tawaf and Sa’i to complete major rites."
+    ] 
+  },
+  { 
+    title: "Step 12: Farewell Tawaf", 
+    image: "/images/hajj/al_wada.jpeg", 
+    content: [
+      "Perform Tawaf al-Wada before departing Makkah."
+    ] 
+  }
 ];
+
 // --- Scroll-triggered visibility hook ---
 function useIsVisible(ref) {
   const [isVisible, setIsVisible] = useState(false);
@@ -50,14 +114,13 @@ function AnimatedContainer({ children }) {
   return (
     <div
       ref={ref}
-      className={`transform transition-all duration-700 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-      }`}
+      className={`transform transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
     >
       {children}
     </div>
   );
 }
+
 function TimelineSection() {
   const steps = [
     {
@@ -68,8 +131,7 @@ function TimelineSection() {
     {
       day: 'Dhul-Hijjah 9',
       title: 'Stand at Arafat',
-      text:
-        'Spend the day at Arafat in prayer (the most important day of Hajj).'
+      text: 'Spend the day at Arafat in prayer (the most important day of Hajj).'
     },
     {
       day: 'Night of 9th',
@@ -79,28 +141,23 @@ function TimelineSection() {
     {
       day: 'Dhul-Hijjah 10',
       title: 'Stoning & Sacrifice',
-      text:
-        'Stone the Jamarat pillars, offer Qurbani, then shave/cut hair.'
+      text: 'Stone the Jamarat pillars, offer Qurbani, then shave/cut hair.'
     },
     {
       day: 'Dhul-Hijjah 10+',
       title: 'Tawaf & Sa’i',
-      text:
-        'Perform Tawaf and Sa’i back in Mecca after the stoning rites.'
+      text: 'Perform Tawaf and Sa’i back in Mecca after the stoning rites.'
     },
     {
       day: 'Dhul-Hijjah 11–12',
       title: 'Final Days in Mina',
-      text:
-        'Continue stoning ritual on the following days and conclude with Farewell Tawaf.'
+      text: 'Continue stoning ritual on the following days and conclude with Farewell Tawaf.'
     }
   ];
 
   return (
     <section className="py-16">
-      <h2 className="text-3xl font-bold mb-8 text-center">
-        Pilgrimage Journey Timeline
-      </h2>
+      <h2 className="text-3xl font-bold mb-8 text-center">Pilgrimage Journey Timeline</h2>
       <div className="space-y-8 max-w-3xl mx-auto">
         {steps.map((step, idx) => (
           <AnimatedContainer key={idx}>
@@ -109,9 +166,7 @@ function TimelineSection() {
                 {idx + 1}
               </div>
               <div>
-                <p className="font-semibold">
-                  {step.day}: {step.title}
-                </p>
+                <p className="font-semibold">{step.day}: {step.title}</p>
                 <p className="text-gray-700">{step.text}</p>
               </div>
             </div>
@@ -148,7 +203,7 @@ const HajjPage = () => {
       <HeroSection
         title="Hajj – The Journey of a Lifetime"
         subtitle="Experience the sacred pilgrimage to the House of Allah"
-        backgroundImage={hajjBanner}
+        backgroundImage="/images/hajj/kaaba.jpg"
       />
 
       <div className="text-center bg-amber-50 py-10 px-6">
@@ -232,33 +287,8 @@ const HajjPage = () => {
                 ))}
               </ul>
             ) : (
-              <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
-                {selectedCard.content}
-              </p>
+              <p className="text-gray-700 text-lg md:text-xl">{selectedCard.content}</p>
             )}
-
-            <div className="mt-10 flex justify-between">
-              <button
-                className="bg-amber-200 hover:bg-amber-300 text-amber-900 font-bold py-2 px-4 md:px-6 rounded shadow"
-                onClick={() => {
-                  const currentIndex = hajjSteps.findIndex(step => step.title === selectedCard.title);
-                  const prevIndex = (currentIndex - 1 + hajjSteps.length) % hajjSteps.length;
-                  setSelectedCard(hajjSteps[prevIndex]);
-                }}
-              >
-                ← Previous
-              </button>
-              <button
-                className="bg-amber-200 hover:bg-amber-300 text-amber-900 font-bold py-2 px-4 md:px-6 rounded shadow"
-                onClick={() => {
-                  const currentIndex = hajjSteps.findIndex(step => step.title === selectedCard.title);
-                  const nextIndex = (currentIndex + 1) % hajjSteps.length;
-                  setSelectedCard(hajjSteps[nextIndex]);
-                }}
-              >
-                Next →
-              </button>
-            </div>
           </div>
         </div>
       )}

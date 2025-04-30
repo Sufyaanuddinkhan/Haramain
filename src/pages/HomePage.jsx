@@ -1,57 +1,48 @@
 import React from "react";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import { Card, Hero, PopupAd } from "../components/PageComponent";
 
-import {Card,Hero,PopupAd} from "../components/PageComponent";
-import makkahImg from "../assets/makkah/masjid_al_jharam-nightview2.jpg";
-import makkahHero from '../assets/makkah/masjid_al_jharam-nightview2.jpg';
-import madinaImg from "../assets/madina.jpeg";
- const HeroSections = () => {
-  return ( 
+const HeroSections = () => {
+  return (
     <Hero
-    backgroundImage={makkahHero}
-    title="Explore the beauty and spirituality of Makkah & Madina"
-    description="Your comprehensive guide to exploring Makkah and Madinah, the two holiest cities in Islam."
-  
-  />
-
-  )}   
-
+      backgroundImage="/images/makkah/masjid_al_jharam-nightview2.jpg"
+      title="Explore the beauty and spirituality of Makkah & Madina"
+      description="Your comprehensive guide to exploring Makkah and Madinah, the two holiest cities in Islam."
+    />
+  );
+};
 
 const ExploreSection = () => {
   return (
-<div>
-<section className="py-12 px-4 md:px-12 bg-gray-50">
-  <h2 className="text-3xl font-bold text-center mb-10">Explore Our Site</h2>
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
-      <Card
-        image={makkahImg}
-        title="Makkah"
-        description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
-        link="/makkah"
-      />
-      <Card 
-        image={madinaImg}
-        title="Madina"
-        description="City of the Prophet (PBUH), home to Masjid al-Nabawi and rich Islamic history."
-        link="/madina"
-      />
+    <section className="py-12 px-4 md:px-12 bg-gray-50">
+      <h2 className="text-3xl font-bold text-center mb-10">Explore Our Site</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
         <Card
-        image={makkahImg}
-        title="Umrah"
-        description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
-        link="/makkah"
-      />
-            <Card
-        image={makkahImg}
-        title="Hajj"
-        description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
-        link="/makkah"
-      />
-  </div>
-
-
-</section>
-</div>  
+          image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+          title="Makkah"
+          description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
+          link="/makkah"
+        />
+        <Card
+          image="/images/madina.jpeg"
+          title="Madina"
+          description="City of the Prophet (PBUH), home to Masjid al-Nabawi and rich Islamic history."
+          link="/madina"
+        />
+        <Card
+          image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+          title="Umrah"
+          description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
+          link="/makkah"
+        />
+        <Card
+          image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+          title="Hajj"
+          description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
+          link="/makkah"
+        />
+      </div>
+    </section>
   );
 };
 
@@ -93,24 +84,26 @@ const HeartSoulSection = () => {
         </motion.p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-10">
-          {[{
-            title: "Makkah – The Heart",
-            items: [
-              "✨ Birthplace of Prophet Muhammad (PBUH)",
-              "📖 Where the first revelation was received",
-              "🏛️ Home of the Kaaba – Qibla for all Muslims",
-              "🕋 Center of Hajj and Tawheed",
-            ],
-          },
-          {
-            title: "Madina – The Soul",
-            items: [
-              "🌇 City of the Prophet’s Hijrah (migration)",
-              "🕌 Home of Masjid an-Nabawi",
-              "❤️ Symbol of peace, mercy, and unity",
-              "🌹 Final resting place of Prophet Muhammad (PBUH)",
-            ],
-          }].map((card, index) => (
+          {[
+            {
+              title: "Makkah – The Heart",
+              items: [
+                "✨ Birthplace of Prophet Muhammad (PBUH)",
+                "📖 Where the first revelation was received",
+                "🏛️ Home of the Kaaba – Qibla for all Muslims",
+                "🕋 Center of Hajj and Tawheed",
+              ],
+            },
+            {
+              title: "Madina – The Soul",
+              items: [
+                "🌇 City of the Prophet’s Hijrah (migration)",
+                "🕌 Home of Masjid an-Nabawi",
+                "❤️ Symbol of peace, mercy, and unity",
+                "🌹 Final resting place of Prophet Muhammad (PBUH)",
+              ],
+            },
+          ].map((card, index) => (
             <motion.div
               key={card.title}
               className="bg-white rounded-2xl shadow p-6 border border-gray-200 w-full max-w-md text-left cursor-pointer"
@@ -142,29 +135,6 @@ const HeartSoulSection = () => {
   );
 };
 
-
-
-
-// const SubscribeSection = () => {
-//   return (
-//       <section className="py-16 bg-white">
-//         <div className="max-w-md mx-auto text-center px-4">
-//           <h3 className="text-2xl font-semibold mb-4 text-gray-800">Stay Updated</h3>
-//           <p className="text-gray-600 mb-6">Subscribe to our newsletter for pilgrimage tips and updates.</p>
-//           <form className="flex flex-col sm:flex-row gap-4">
-//             <input
-//               type="email"
-//               placeholder="Your email address"
-//               className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-600"
-//             />
-//             <motion.button type="submit" className="bg-green-600 text-white px-6 py-2 rounded-md"
-//               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-//             >Subscribe</motion.button>
-//           </form>
-//         </div>
-//       </section>
-//   );
-// }; 
 function QuoteSection() {
   return (
     <section className="py-16 bg-gray-50 text-center">
@@ -179,6 +149,7 @@ function QuoteSection() {
     </section>
   );
 }
+
 export const HomePage = () => {
   return (
     <div>
@@ -187,7 +158,6 @@ export const HomePage = () => {
       <QuoteSection />
       <ExploreSection />
       <HeartSoulSection />
-     
     </div>
   );
-}
+};

@@ -1,8 +1,10 @@
-// Umrah.jsx
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import meccaUmrah from '../assets/umrah/mecca-umrah.webp';
 import { FaHome, FaInfoCircle, FaServicestack, FaPhoneAlt } from 'react-icons/fa';
+
+// Update image paths to point to the public/images folder
+const meccaUmrah = '/images/umrah/mecca-umrah.webp'; // Assuming the image is placed in public/images/umrah folder
+
 const UmrahHero = () => {
   return (
     <div className="relative w-full h-[60vh] overflow-hidden rounded-b-3xl shadow-lg">
@@ -37,12 +39,10 @@ const UmrahHero = () => {
   );
 };
 
-
-
 const umrahSteps = [
   {
     title: "Ihram & Niyyah",
-    image: meccaUmrah,
+    image: '/images/umrah/mecca-umrah.webp',  // Update image path
     content: [
       "Enter the state of Ihram before reaching the Miqat.",
       "Make a sincere intention to perform Umrah.",
@@ -51,7 +51,7 @@ const umrahSteps = [
   },
   {
     title: "Tawaf",
-    image: meccaUmrah,
+    image: '/images/umrah/mecca-umrah.webp',  // Update image path
     content: [
       "Perform 7 circuits around the Kaaba starting from the Black Stone.",
       "Ensure you remain in a state of Wudu (ablution)."
@@ -59,7 +59,7 @@ const umrahSteps = [
   },
   {
     title: "Pray at Maqam Ibrahim",
-    image: meccaUmrah,
+    image: '/images/umrah/mecca-umrah.webp',  // Update image path
     content: [
       "Offer 2 Rak’ahs behind Maqam Ibrahim.",
       "Drink Zamzam water after prayer."
@@ -67,7 +67,7 @@ const umrahSteps = [
   },
   {
     title: "Sa’i between Safa & Marwah",
-    image: meccaUmrah,
+    image: '/images/umrah/mecca-umrah.webp',  // Update image path
     content: [
       "Walk 7 times between the hills of Safa and Marwah.",
       "Begin at Safa and end at Marwah, remembering Hajar’s devotion."
@@ -75,7 +75,7 @@ const umrahSteps = [
   },
   {
     title: "Halq or Taqsir",
-    image: meccaUmrah,
+    image: '/images/umrah/mecca-umrah.webp',  // Update image path
     content: [
       "Men shave their heads (Halq) or shorten their hair (Taqsir).",
       "Women cut a small portion of their hair.",
@@ -84,7 +84,7 @@ const umrahSteps = [
   },
   {
     title: "Arrival at Masjid al-Haram",
-    image: meccaUmrah,
+    image: '/images/umrah/mecca-umrah.webp',  // Update image path
     content: [
       "Arrive at the Masjid al-Haram and stand in awe of the Kaaba.",
       "Make Du'a for peace and blessings during your stay."
@@ -92,7 +92,7 @@ const umrahSteps = [
   },
   {
     title: "Dua at the Kaaba",
-    image: meccaUmrah,
+    image: '/images/umrah/mecca-umrah.webp',  // Update image path
     content: [
       "Stand near the Kaaba and make personal supplications (Dua).",
       "It is recommended to pray for yourself, family, and the Ummah."
@@ -100,7 +100,7 @@ const umrahSteps = [
   },
   {
     title: "Drinking Zamzam Water",
-    image: meccaUmrah,
+    image: '/images/umrah/mecca-umrah.webp',  // Update image path
     content: [
       "Drink Zamzam water after performing Tawaf and Sa'i.",
       "It is a sacred and blessed drink, providing spiritual nourishment."
@@ -108,14 +108,13 @@ const umrahSteps = [
   },
   {
     title: "Visit to Medina (Optional)",
-    image: meccaUmrah,
+    image: '/images/umrah/mecca-umrah.webp',  // Update image path
     content: [
       "A visit to the Prophet’s Mosque (Masjid an-Nabawi) is optional but highly recommended.",
       "Offer prayers and seek blessings at the tomb of Prophet Muhammad (PBUH)."
     ]
   }
 ];
-
 
 const menuItems = [
   { label: 'History', content: 'Detailed history content here.' },
@@ -125,9 +124,6 @@ const menuItems = [
   { label: 'Holy Sites', content: 'Holy sites content here.' },
   { label: 'Getting to Makkah', content: 'Travel information content here.' },
 ];
-
-
-
 
 const Umrah = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -152,9 +148,7 @@ const Umrah = () => {
   };
 
   return (
-    
     <div className="flex flex-col items-center justify-center">
-      
       {/* Hero Section */}
       <UmrahHero />
       
@@ -237,5 +231,3 @@ const Umrah = () => {
 };
 
 export default Umrah;
-
-

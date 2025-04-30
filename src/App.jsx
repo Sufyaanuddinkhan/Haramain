@@ -10,7 +10,7 @@ import HajjPage  from './pages/Hajj'
 import Umrah from './pages/Umrah';
 import Aboutus  from "./pages/AboutUs";
 import ScrollToTop from '../src/Utils/ScrollToTop';
-import Test from "./components/ImageTextSectionTest.jsx"
+
 function App() {
   return (
     <>
@@ -33,7 +33,7 @@ function App() {
         <Route path="/hajj" element={<HajjPage />} />
         <Route path="/umrah" element={<Umrah />} />
         <Route path="/About" element={<Aboutus />} />
-        <Route path="/test" element={<Test />} />
+       
       </Routes>
       <ScrollToTop />
       <Footer />

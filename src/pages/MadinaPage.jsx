@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HeroSection, ImageTextSection, ExpandableCard } from '../components/PageComponent';
-import madinaBg from '../assets/madina/madina.jpg';
-import madinaHBg from '../assets/madina/history.jpg';
-import mosque from '../assets/madina/masjid-al-nabawi.jpg';
-import madinaCultural from '../assets/madina/madina.jpg';
 
 const menuItems = [
   { label: 'History' },
@@ -22,7 +18,7 @@ const MadinaPage = () => {
       <HeroSection
         title="Welcome to Madina!"
         subtitle="The sacred heart of Islam, The Prophet's City (مدينة النبي)"
-        backgroundImage={madinaBg}
+        backgroundImage="/images/madina/madina.jpg" // Updated path
         hadithText="Medina is a sanctuary from that place to that. Its trees should not be cut and no heresy should be innovated nor any sin should be committed in it, and whoever innovates in it an heresy or commits sins (bad deeds), then he will incur the curse of Allah, the angels, and all the people."
         hadithSource="Sahih al-Bukhari 1867"
       />
@@ -60,7 +56,7 @@ const MadinaPage = () => {
         {selected === 'History' && (
           <ImageTextSection
             title="History of Madina"
-            image={madinaHBg}
+            image="/images/madina/history.jpg" // Updated path
             description={`Before Islam, Madinah was known as Yathrib, an oasis city inhabited by Arab and Jewish tribes. In 622 CE, Prophet Muhammad ﷺ migrated to Yathrib, renamed it Madinah, and established the first Islamic state. Key events such as the drafting of the Constitution of Madinah and battles like Badr and Uhud shaped the Islamic era. After the Prophet's death, Madinah remained a symbol of Islamic unity and devotion.`}
             colorScheme="alt"
           />
@@ -69,12 +65,11 @@ const MadinaPage = () => {
         {selected === 'Religious & Cultural Significance' && (
           <ImageTextSection
             title="Religious Significance of Madina"
-            image={mosque}
-            description={`Madinah is the second holiest city in Islam after Makkah. It is home to Al-Masjid an-Nabawi, the Prophet’s Mosque, where Prophet Muhammad ﷺ is buried. Muslims perform Ziyarat to visit his tomb, reflecting deep spiritual reverence. The city witnessed the birth of Islamic laws and community structure. Prayers in the Prophet’s Mosque carry multiplied rewards, making it a spiritual focal point for Muslims worldwide.Madinah is a melting pot of cultures due to the constant flow of pilgrims from around the world. It represents Islamic brotherhood and peace. The city's architectural style blends traditional Islamic motifs with modern elements. Educational institutions, religious centers, and the spirit of hospitality reflect its vibrant culture rooted in Islamic traditions.`}
+            image="/images/madina/masjid-al-nabawi.jpg" // Updated path
+            description={`Madinah is the second holiest city in Islam after Makkah. It is home to Al-Masjid an-Nabawi, the Prophet’s Mosque, where Prophet Muhammad ﷺ is buried. Muslims perform Ziyarat to visit his tomb, reflecting deep spiritual reverence. The city witnessed the birth of Islamic laws and community structure. Prayers in the Prophet’s Mosque carry multiplied rewards, making it a spiritual focal point for Muslims worldwide. Madinah is a melting pot of cultures due to the constant flow of pilgrims from around the world. It represents Islamic brotherhood and peace. The city's architectural style blends traditional Islamic motifs with modern elements. Educational institutions, religious centers, and the spirit of hospitality reflect its vibrant culture rooted in Islamic traditions.`}
             colorScheme="default"
           />
         )}
-
 
         {selected === 'Prophet’s Mosque' && (
           <section className="bg-gray-100 p-6 rounded-lg shadow-md">

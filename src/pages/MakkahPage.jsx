@@ -3,10 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HeroSection, ImageTextSection, ExpandableCard } from "../components/PageComponent";
 import { FaMapMarkerAlt, FaMosque, FaKaaba, FaLandmark, FaStarOfDavid } from 'react-icons/fa';
 
-import makkahBg from "../assets/makkah/masjid_al_jharam-nightview.jpg";
-import makkahg from "../assets/makkah/oldmakkah.webp";
-import clocktower from "../assets/makkah/clock_tower.jpg";
-
 const menuItems = [
   { label: 'History', icon: <FaMapMarkerAlt /> },
   { label: 'Cultural & Spiritual Significance', icon: <FaMosque /> },
@@ -24,9 +20,9 @@ const MakkahPage = () => {
       <HeroSection
         title="Welcome to Makkah!"
         subtitle="The sacred heart of Islam, home to the Kaaba"
-         hadithText="“By Allah, you are the best and most beloved land to Allah. Had I not been driven away from you, I would not have left you.”"
-          hadithSource="Sunan al-Tirmidhī 3925"
-        backgroundImage={makkahBg}
+        hadithText="“By Allah, you are the best and most beloved land to Allah. Had I not been driven away from you, I would not have left you.”"
+        hadithSource="Sunan al-Tirmidhī 3925"
+        backgroundImage="/images/makkah/masjid_al_jharam-nightview.jpg" // Updated path
       />
 
       {/* Sticky Secondary Nav */}
@@ -70,7 +66,7 @@ const MakkahPage = () => {
           {selected === 'History' && (
             <ImageTextSection
               title="History of Makkah"
-              image={makkahg}
+              image="/images/makkah/oldmakkah.webp" // Updated path
               description={`Makkah’s historical roots extend deep into ancient times...`}
               colorScheme="alt"
             />
@@ -79,7 +75,7 @@ const MakkahPage = () => {
           {selected === 'Cultural & Spiritual Significance' && (
             <ImageTextSection
               title="Cultural and Spiritual Influence"
-              image={clocktower}
+              image="/images/makkah/clock_tower.jpg" // Updated path
               description={`The influence of Makkah extends far beyond its geographical boundaries...`}
               reverse={true}
             />
@@ -92,7 +88,7 @@ const MakkahPage = () => {
                 The Grand Mosque (Masjid al-Haram) is the largest mosque in the world and the holiest site in Islam...
               </p>
               <ImageTextSection
-                image={makkahBg}
+                image="/images/makkah/masjid_al_jharam-nightview.jpg" // Updated path
                 description={
                   <div className="text-left mb-6">
                     <h3 className="text-xl font-semibold">Quick Facts</h3>
