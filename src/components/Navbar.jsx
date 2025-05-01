@@ -57,7 +57,7 @@ const Navbar = () => {
       >
         {isOpen && (
           <ul className="flex flex-col gap-4 text-white font-medium">
-            {["Home", "Makkah", "Madina", "Hajj", "Umrah", "Aboutus"].map((link) => (
+            {["Home", "Makkah", "Madina", "Hajj", "Umrah", "About"].map((link) => (
               <motion.li
                 key={link}
                 initial={{ opacity: 0 }}
