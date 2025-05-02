@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Card, Hero, PopupAd } from "../components/PageComponent";
 
 const HeroSections = () => {
+{window.scrollTo(0, 0)}
+
   return (
     <Hero
       backgroundImage="/images/makkah/masjid_al_jharam-nightview2.jpg"
@@ -12,39 +14,82 @@ const HeroSections = () => {
   );
 };
 
+// const ExploreSection = () => {
+//   return (
+//     <section className="py-12 px-4 md:px-12 bg-gray-50">
+//       <h2 className="text-3xl font-bold text-center mb-10">Explore Our Site</h2>
+//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
+//         <Card
+//           image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+//           title="Makkah"
+//           description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
+//           link="/makkah"
+//         />
+//         <Card
+//           image="/images/madina.jpeg"
+//           title="Madina"
+//           description="City of the Prophet (PBUH), home to Masjid al-Nabawi and rich Islamic history."
+//           link="/madina"
+//         />
+//         <Card
+//           image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+//           title="Umrah"
+//           description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
+//           link="/makkah"
+//         />
+//         <Card
+//           image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+//           title="Hajj"
+//           description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
+//           link="/makkah"
+//         />
+//       </div>
+//     </section>
+//   );
+// };
+
 const ExploreSection = () => {
   return (
-    <section className="py-12 px-4 md:px-12 bg-gray-50">
+    <section className="py-12 px-4  md:px-12 bg-gray-50">
       <h2 className="text-3xl font-bold text-center mb-10">Explore Our Site</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
-        <Card
-          image="/images/makkah/masjid_al_jharam-nightview2.jpg"
-          title="Makkah"
-          description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
-          link="/makkah"
-        />
-        <Card
-          image="/images/madina.jpeg"
-          title="Madina"
-          description="City of the Prophet (PBUH), home to Masjid al-Nabawi and rich Islamic history."
-          link="/madina"
-        />
-        <Card
-          image="/images/makkah/masjid_al_jharam-nightview2.jpg"
-          title="Umrah"
-          description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
-          link="/makkah"
-        />
-        <Card
-          image="/images/makkah/masjid_al_jharam-nightview2.jpg"
-          title="Hajj"
-          description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
-          link="/makkah"
-        />
+      <div className="flex  justify-between gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 pb-4">
+        <div className="flex-shrink-0 w-64 sm:w-72 md:w-80">
+          <Card
+            image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+            title="Makkah"
+            description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
+            link="/makkah"
+          />
+        </div>
+        <div className="flex-shrink-0 w-64 sm:w-72 md:w-80">
+          <Card
+            image="/images/madina.jpeg"
+            title="Madina"
+            description="City of the Prophet (PBUH), home to Masjid al-Nabawi and rich Islamic history."
+            link="/madina"
+          />
+        </div>
+        <div className="flex-shrink-0 w-64 sm:w-72 md:w-80">
+          <Card
+            image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+            title="Umrah"
+            description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
+            link="/makkah"
+          />
+        </div>
+        <div className="flex-shrink-0 w-64 sm:w-72 md:w-80">
+          <Card
+            image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+            title="Hajj"
+            description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
+            link="/makkah"
+          />
+        </div>
       </div>
     </section>
   );
 };
+
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink , useLocation} from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -10,6 +10,11 @@ const Navbar = () => {
     isActive ? "text-yellow-500 underline" : "hover:text-yellow-400";
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+const location = useLocation();
+useEffect(() => {
+  window.scrollTo(0, 0); // Scroll to top on route change
+}, [location.pathname]);
 
   return (
     <nav className="bg-black bg-opacity-80 shadow-md sticky top-0 z-50 py-2">

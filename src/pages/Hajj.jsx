@@ -1,297 +1,237 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { HeroSection } from "../components/PageComponent.jsx";
+import hajjBanner from "../assets/makkah/rp/kaaba.jpg";
+import meccaUmrah from '../assets/umrah/mecca-umrah.webp';
 
 const hajjSteps = [
-  { 
-    title: "Step 1: Preparation and Intention (Niyyah)", 
-    image: "/images/hajj/kaaba.jpg", 
+  {
+    title: "Ihram & Niyyah",
+    image: meccaUmrah,
     content: [
-      "Before setting off, pilgrims should ensure they meet all financial, physical, and legal requirements for Hajj.",
-      "It is advised to seek forgiveness, pay off debts, and reconcile with others before embarking on the journey.",
-      "Pilgrims must intend niyyah to perform Hajj sincerely for Allah."
-    ] 
+      "Enter the state of Ihram before reaching the Miqat.",
+      "Make a sincere intention to perform Umrah.",
+      "Men wear unstitched white garments, women wear modest dress."
+    ]
   },
-  { 
-    title: "Step 2: Ihram", 
-    image: "/images/hajj/ihram.jpg", 
+  {
+    title: "Tawaf",
+    image: meccaUmrah,
     content: [
-      "Ihram is a sacred state of purity that begins at designated Miqat points.",
-      "Men wear two white, unstitched clothes; women wear modest attire.",
-      "Talbiyah is recited: Labbayk Allahumma labbayk..."
-    ] 
+      "Perform 7 circuits around the Kaaba starting from the Black Stone.",
+      "Ensure you remain in a state of Wudu (ablution)."
+    ]
   },
-  { 
-    title: "Step 3: Prohibited Acts In Ihram", 
-    image: "/images/hajj/prohibited_act.png", 
+  {
+    title: "Pray at Maqam Ibrahim",
+    image: meccaUmrah,
     content: [
-      "Avoid shaving, cutting nails, perfume, marital relations, and conflict."
-    ] 
+      "Offer 2 Rak’ahs behind Maqam Ibrahim.",
+      "Drink Zamzam water after prayer."
+    ]
   },
-  { 
-    title: "Step 4: Arrival in Makkah and Tawaf", 
-    image: "/images/hajj/arrival_makkah.webp", 
+  {
+    title: "Sa’i between Safa & Marwah",
+    image: meccaUmrah,
     content: [
-      "Perform Tawaf al-Qudum around the Kaaba.",
-      "Offer two Rak’ahs of prayer near Maqam Ibrahim."
-    ] 
+      "Walk 7 times between the hills of Safa and Marwah.",
+      "Begin at Safa and end at Marwah, remembering Hajar’s devotion."
+    ]
   },
-  { 
-    title: "Step 5: Sa’i", 
-    image: "/images/hajj/safa_marwa.jpg", 
+  {
+    title: "Halq or Taqsir",
+    image: meccaUmrah,
     content: [
-      "Walk seven times between Safa and Marwah, recalling Hajar's devotion."
-    ] 
+      "Men shave their heads (Halq) or shorten their hair (Taqsir).",
+      "Women cut a small portion of their hair.",
+      "This marks the end of Umrah."
+    ]
   },
-  { 
-    title: "Step 6: Travel to Mina", 
-    image: "/images/hajj/travelling_Mina.webp", 
+  {
+    title: "Arrival at Masjid al-Haram",
+    image: meccaUmrah,
     content: [
-      "Stay in tents in Mina for prayer and reflection."
-    ] 
+      "Arrive at the Masjid al-Haram and stand in awe of the Kaaba.",
+      "Make Du'a for peace and blessings during your stay."
+    ]
   },
-  { 
-    title: "Step 7: Day of Arafat", 
-    image: "/images/hajj/arafat.jpg", 
+  {
+    title: "Dua at the Kaaba",
+    image: meccaUmrah,
     content: [
-      "Stand in Arafat, seek forgiveness and listen to the Khutbah."
-    ] 
+      "Stand near the Kaaba and make personal supplications (Dua).",
+      "It is recommended to pray for yourself, family, and the Ummah."
+    ]
   },
-  { 
-    title: "Step 8: Muzdalifah", 
-    image: "/images/hajj/muzdalifah.jpeg", 
+  {
+    title: "Drinking Zamzam Water",
+    image: meccaUmrah,
     content: [
-      "Collect pebbles and sleep under the stars."
-    ] 
+      "Drink Zamzam water after performing Tawaf and Sa'i.",
+      "It is a sacred and blessed drink, providing spiritual nourishment."
+    ]
   },
-  { 
-    title: "Step 9: Stoning", 
-    image: "/images/hajj/al_jamarat.jpeg", 
+  {
+    title: "Visit to Medina (Optional)",
+    image: meccaUmrah,
     content: [
-      "Throw pebbles at the pillars representing Satan."
-    ] 
-  },
-  { 
-    title: "Step 10: Shaving", 
-    image: "/images/hajj/shaving_head.jpeg", 
-    content: [
-      "Men shave heads; women cut a small portion of hair."
-    ] 
-  },
-  { 
-    title: "Step 11: Tawaf al-Ifadah", 
-    image: "/images/hajj/main_tawaf.jpg", 
-    content: [
-      "Perform Tawaf and Sa’i to complete major rites."
-    ] 
-  },
-  { 
-    title: "Step 12: Farewell Tawaf", 
-    image: "/images/hajj/al_wada.jpeg", 
-    content: [
-      "Perform Tawaf al-Wada before departing Makkah."
-    ] 
+      "A visit to the Prophet’s Mosque (Masjid an-Nabawi) is optional but highly recommended.",
+      "Offer prayers and seek blessings at the tomb of Prophet Muhammad (PBUH)."
+    ]
   }
 ];
 
-// --- Scroll-triggered visibility hook ---
-function useIsVisible(ref) {
-  const [isVisible, setIsVisible] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [ref]);
-  return isVisible;
-}
+// --- Timeline Section ---
 
-// --- Animated container for fade/slide-in ---
-function AnimatedContainer({ children }) {
-  const ref = useRef();
-  const isVisible = useIsVisible(ref);
-  return (
-    <div
-      ref={ref}
-      className={`transform transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-    >
-      {children}
-    </div>
-  );
-}
-
-function TimelineSection() {
+function TimelineSection1() {
   const steps = [
-    {
-      day: 'Dhul-Hijjah 8',
-      title: 'Enter Ihram & Travel to Mina',
-      text: 'Pilgrims don the Ihram garments and travel to the Mina encampment.'
-    },
-    {
-      day: 'Dhul-Hijjah 9',
-      title: 'Stand at Arafat',
-      text: 'Spend the day at Arafat in prayer (the most important day of Hajj).'
-    },
-    {
-      day: 'Night of 9th',
-      title: 'Muzdalifah',
-      text: 'Collect pebbles under the stars at Muzdalifah.'
-    },
-    {
-      day: 'Dhul-Hijjah 10',
-      title: 'Stoning & Sacrifice',
-      text: 'Stone the Jamarat pillars, offer Qurbani, then shave/cut hair.'
-    },
-    {
-      day: 'Dhul-Hijjah 10+',
-      title: 'Tawaf & Sa’i',
-      text: 'Perform Tawaf and Sa’i back in Mecca after the stoning rites.'
-    },
-    {
-      day: 'Dhul-Hijjah 11–12',
-      title: 'Final Days in Mina',
-      text: 'Continue stoning ritual on the following days and conclude with Farewell Tawaf.'
-    }
+    "Enter Ihram & Travel to Mina",
+    "Stand at Arafat",
+    "Night in Muzdalifah",
+    "Stoning & Sacrifice",
+    "Tawaf & Sa’i",
+    "Final Days in Mina",
   ];
 
   return (
-    <section className="py-16">
-      <h2 className="text-3xl font-bold mb-8 text-center">Pilgrimage Journey Timeline</h2>
-      <div className="space-y-8 max-w-3xl mx-auto">
-        {steps.map((step, idx) => (
-          <AnimatedContainer key={idx}>
-            <div className="flex items-start">
-              <div className="flex-shrink-0 w-12 h-12 mr-4 flex items-center justify-center bg-primary text-white rounded-full">
-                {idx + 1}
-              </div>
-              <div>
-                <p className="font-semibold">{step.day}: {step.title}</p>
-                <p className="text-gray-700">{step.text}</p>
-              </div>
-            </div>
-          </AnimatedContainer>
+    <div className="relative w-full overflow-x-auto py-16">
+      <h2 className="text-3xl font-bold mb-12 text-center">Pilgrimage Journey Timeline</h2>
+      <div className="relative flex w-max mx-auto items-center justify-between px-8">
+        {/* Horizontal line */}
+        <div className="absolute left-0 right-0 top-1/2 h-1 bg-amber-900 z-100" />
+  
+        {steps.map((step, index) => (
+          <div key={index} className="relative z-10 flex flex-col items-center w-40 mx-4">
+            {/* When on top (even) */}
+            {index % 2 === 0 && (
+              <>
+                <div className="mb-2 text-center">
+                  <div className="font-semibold text-purple-800">Step {index + 1}</div>
+                  <div className="text-xs text-amber-700 mt-1">{step}</div>
+                </div>
+                <div className="w-0.5 h-6 bg-gray-400 mb-2"></div>
+                <div
+                  className={`w-16 h-6 ${
+                    index === 0
+                      ? "bg-gradient-to-r from-yellow-400 to-amber-500 border-4 border-white shadow-lg"
+                      : "bg-amber-400"
+                  } rounded-md`}
+                ></div>
+              </>
+            )}
+
+  {window.scrollTo(0, 0)}
+
+  
+            {/* When on bottom (odd) */}
+            {index % 2 !== 0 && (
+              <>
+                <div
+                  className={`w-16 h-6 ${
+                    index === steps.length - 1
+                      ? "bg-amber-500 relative after:content-[''] after:absolute after:right-[-12px] after:top-1/2 after:-translate-y-1/2 after:border-y-[6px] after:border-l-[10px] after:border-l-amber-500 after:border-y-transparent"
+                      : "bg-amber-400"
+                  } rounded-md`}
+                ></div>
+                <div className="w-0.5 h-6 bg-gray-400 mt-2"></div>
+                <div className="mt-2 text-center">
+                  <div className="font-semibold text-purple-800">Step {index + 1}</div>
+                  <div className="text-xs text-amber-700 mt-1">{step}</div>
+                </div>
+              </>
+            )}
+          </div>
         ))}
       </div>
-    </section>
+    </div>
   );
+  
+  
+  
 }
 
+
 const HajjPage = () => {
-  const [selectedCard, setSelectedCard] = useState(null);
-  const [startIndex, setStartIndex] = useState(0);
-  const modalRef = useRef();
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setSelectedCard(null);
-      }
-    };
+    const interval = setInterval(() => {
+      setCurrentStep((prev) => (prev + 1) % hajjSteps.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
-    if (selectedCard) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [selectedCard]);
+  const nextStep = () => setCurrentStep((prev) => (prev + 1) % hajjSteps.length);
+  const prevStep = () => setCurrentStep((prev) => (prev - 1 + hajjSteps.length) % hajjSteps.length);
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <HeroSection
         title="Hajj – The Journey of a Lifetime"
         subtitle="Experience the sacred pilgrimage to the House of Allah"
-        backgroundImage="/images/hajj/kaaba.jpg"
+        backgroundImage={hajjBanner}
       />
 
-      <div className="text-center bg-amber-50 py-10 px-6">
-        <h2 className="text-3xl font-bold text-amber-900 mb-4 inline-block bg-yellow-300 px-6 py-2 rounded shadow">
-          Step-by-Step Journey of Hajj
-        </h2>
-        <p className="text-lg text-coolGray-700 max-w-3xl mx-auto mt-4">
-          Explore the sacred journey of Hajj through this visual guide. Each card below represents a meaningful step that every pilgrim undertakes, from the intention to the farewell. Click on any step to learn more.
-        </p>
-      </div>
-      <TimelineSection />
-      <div className="bg-gray-100 py-10 px-6">
-        <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-          <button
-            onClick={() => setStartIndex((prev) => (prev - 1 + hajjSteps.length) % hajjSteps.length)}
-            className="text-4xl text-amber-700 hover:text-amber-900 transition duration-300"
-          >
-            ←
-          </button>
+      <TimelineSection1 />
 
-          <div className="flex flex-wrap justify-center gap-6">
-            {[0, 1, 2].map((offset) => {
-              const step = hajjSteps[(startIndex + offset) % hajjSteps.length];
-              return (
-                <div
-                  key={offset}
-                  className="bg-white rounded-xl shadow-lg w-72 h-96 cursor-pointer hover:scale-105 transition duration-300"
-                  onClick={() => setSelectedCard(step)}
-                >
-                  <img src={step.image} alt={step.title} className="w-full h-48 object-cover rounded-t-xl" />
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold text-center">{step.title}</h3>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <button
-            onClick={() => setStartIndex((prev) => (prev + 1) % hajjSteps.length)}
-            className="text-4xl text-amber-700 hover:text-amber-900 transition duration-300"
-          >
-            →
-          </button>
-        </div>
-      </div>
-
-      <div className="text-center bg-amber-50 py-10 px-6">
-        <h2 className="text-3xl font-bold text-amber-900 mb-4 inline-block bg-yellow-300 px-6 py-2 rounded shadow">
-          Final Thoughts
-        </h2>
-        <p className="text-lg text-coolGray-700 max-w-3xl mx-auto mt-4">
-          Hajj is a deeply spiritual journey requiring patience, endurance, and sincerity. Completing Hajj with devotion results in immense rewards, including the forgiveness of all past sins. May Allah accept the Hajj of all pilgrims in 2025. Ameen!
-        </p>
-      </div>
-
-      {selectedCard && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center px-4">
-          <div
-            ref={modalRef}
-            className="bg-white rounded-xl shadow-2xl max-w-4xl w-full p-6 md:p-10 relative"
-          >
-            <button
-              className="absolute top-4 right-6 text-gray-500 hover:text-black text-2xl"
-              onClick={() => setSelectedCard(null)}
+      <div className="flex flex-col items-center justify-center p-6 w-full">
+        <div className="relative w-full max-w-3xl h-[450px] overflow-hidden rounded-2xl shadow-2xl bg-white">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStep}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.7, ease: "easeInOut" }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.8}
+              onDragEnd={(event, info) => {
+                if (info.offset.x < -100) nextStep();
+                else if (info.offset.x > 100) prevStep();
+              }}
+              className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center p-6 cursor-grab"
             >
-              ×
-            </button>
-
-            <img
-              src={selectedCard.image}
-              alt={selectedCard.title}
-              className="w-full h-64 md:h-[30rem] object-cover rounded-md mb-6"
-            />
-            <h2 className="text-2xl md:text-4xl font-bold mb-4">{selectedCard.title}</h2>
-
-            {Array.isArray(selectedCard.content) ? (
-              <ul className="list-disc pl-6 text-gray-700 text-lg md:text-xl leading-relaxed">
-                {selectedCard.content.map((point, idx) => (
+              <img
+                src={hajjSteps[currentStep].image}
+                alt={hajjSteps[currentStep].title}
+                className="w-full h-52 object-cover rounded-lg mb-4"
+              />
+              <h2 className="text-2xl font-bold mb-2 text-center">{hajjSteps[currentStep].title}</h2>
+              <ul className="text-gray-700 text-sm list-disc list-inside space-y-1">
+                {hajjSteps[currentStep].content.map((point, idx) => (
                   <li key={idx}>{point}</li>
                 ))}
               </ul>
-            ) : (
-              <p className="text-gray-700 text-lg md:text-xl">{selectedCard.content}</p>
-            )}
-          </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
-      )}
+
+        <div className="flex justify-between w-full max-w-3xl mt-4 px-8">
+          <button onClick={prevStep} className="bg-gray-200 px-4 py-2 rounded-full hover:bg-gray-300 transition">
+            Previous
+          </button>
+          <button onClick={nextStep} className="bg-gray-200 px-4 py-2 rounded-full hover:bg-gray-300 transition">
+            Next
+          </button>
+        </div>
+
+        <div className="flex overflow-x-auto w-full max-w-4xl mt-6 space-x-3 px-4 pb-2">
+          {hajjSteps.map((step, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setCurrentStep(index)}
+              className={`cursor-pointer flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden border-2 transition-all ${
+                currentStep === index ? 'border-blue-500' : 'border-transparent'
+              }`}
+            >
+              <img src={step.image} alt={step.title} className="w-full h-full object-cover" />
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

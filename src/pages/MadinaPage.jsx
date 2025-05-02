@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HeroSection, ImageTextSection, ExpandableCard } from '../components/PageComponent';
+import { FaMapMarkerAlt, FaMosque, FaKaaba, FaLandmark,  } from 'react-icons/fa';
 
 const menuItems = [
-  { label: 'History' },
-  { label: 'Religious & Cultural Significance' },
-  { label: 'Prophet’s Mosque' },
-  { label: 'Attractions' },
-  { label: 'Holy Sites' },
+  { label: 'History', icon:<FaMapMarkerAlt/> },
+  { label: 'Religious & Cultural Significance',icon:<FaMosque/> },
+  { label: 'Prophet’s Mosque',icon:<FaKaaba/> },
+  { label: 'Attractions',icon:<FaLandmark/> },
+  { label: 'Holy Sites',icon:<FaMapMarkerAlt/> },
 ];
 
 const MadinaPage = () => {
@@ -25,31 +26,31 @@ const MadinaPage = () => {
 
       {/* Sticky Secondary Navigation */}
       <motion.nav
-        className="bg-yellow-200 w-full py-3 shadow sticky top-0 z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="max-w-screen-xl mx-auto px-4">
+          className="bg-yellow-200 w-full py-3 shadow sticky top-0 z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          >
+          <div className="max-w-screen-xl mx-auto px-4">
           <ul className="flex flex-wrap justify-between text-gray-800 font-semibold">
-            {menuItems.map((item, index) => (
-              <motion.li
-                key={index}
-                className={`cursor-pointer px-2 py-1 ${
-                  selected === item.label
-                    ? 'border-b-4 border-yellow-500 text-yellow-700'
-                    : 'hover:text-yellow-600'
-                }`}
-                onClick={() => setSelected(item.label)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          {menuItems.map((item, index) => (
+            <motion.li
+            key={index}
+            className={`cursor-pointer px-2 py-1 flex items-center gap-2 ${
+            selected === item.label
+            ? 'border-b-4 border-yellow-500 text-yellow-700'
+            : 'hover:text-yellow-600'
+            }`}
+            onClick={() => setSelected(item.label)}
+            whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
               >
-                {item.label}
+              {item.icon} {item.label}
               </motion.li>
-            ))}
-          </ul>
-        </div>
-      </motion.nav>
+              ))}
+            </ul>
+          </div>
+          </motion.nav>
 
       {/* Dynamic Content Area */}
       <div className="px-4 py-6 bg-white shadow-inner max-w-screen-xl mx-auto">
@@ -61,7 +62,6 @@ const MadinaPage = () => {
             colorScheme="alt"
           />
         )}
-
         {selected === 'Religious & Cultural Significance' && (
           <ImageTextSection
             title="Religious Significance of Madina"

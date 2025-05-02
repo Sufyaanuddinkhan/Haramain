@@ -53,6 +53,7 @@ const MakkahPage = () => {
         </div>
       </motion.nav>
 
+
       {/* Animated Content Area */}
       <AnimatePresence mode="wait">
         <motion.div
