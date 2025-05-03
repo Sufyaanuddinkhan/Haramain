@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HeroSection, ImageTextSection, ExpandableCard } from '../components/PageComponent';
+import { FaMapMarkerAlt, FaMosque, FaKaaba, FaLandmark } from 'react-icons/fa';
 
 const menuItems = [
   { label: 'History', icon:<FaMapMarkerAlt/> },
