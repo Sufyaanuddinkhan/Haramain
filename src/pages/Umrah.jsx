@@ -36,8 +36,11 @@ const UmrahHero = () => {
         </motion.p>
       </div>
     </div>
+    
   );
 };
+
+
 
 const umrahSteps = [
   {
@@ -134,6 +137,8 @@ const Umrah = () => {
     }, 6000);
     return () => clearInterval(interval);
   }, [currentStep]);
+
+
 
   const nextStep = () => {
     setCurrentStep((prev) => (prev + 1) % umrahSteps.length);

@@ -254,13 +254,14 @@ export const PlacesCards = ({ title, places }) => {
   );
 };
 //Json Cards 
+
 export const ExpandableCard = ({ title, file }) => {
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [expandedPlace, setExpandedPlace] = useState(null);
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_URL}/data/${file.replace('.json', '')}`)
+    fetch(`/data/${file}`) // Corrected fetch path
       .then((res) => res.json())
       .then((data) => {
         setPlaces(data);
@@ -285,6 +286,8 @@ export const ExpandableCard = ({ title, file }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const expandedPlace = expandedIndex !== null ? places[expandedIndex] : null;
+
   if (loading) {
     return <div className="text-center py-12 text-lg">Loading places...</div>;
   }
@@ -298,11 +301,11 @@ export const ExpandableCard = ({ title, file }) => {
           gridTemplateColumns: `repeat(var(--grid-cols, 1), minmax(0, 1fr))`,
         }}
       >
-        {places.map((place) => (
+        {places.map((place, index) => (
           <div
             key={place.id}
             className="bg-white shadow-md rounded-xl overflow-hidden cursor-pointer transition-transform hover:scale-105 duration-300 w-full max-w-sm"
-            onClick={() => setExpandedPlace(place)}
+            onClick={() => setExpandedIndex(index)}
           >
             <img src={place.image} alt={place.title} className="w-full h-48 object-cover" />
             <div className="p-4">
@@ -316,35 +319,50 @@ export const ExpandableCard = ({ title, file }) => {
       {expandedPlace && (
         <div
           className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center"
-          onClick={() => setExpandedPlace(null)}
+          onClick={() => setExpandedIndex(null)}
         >
           <div
             className="relative bg-white w-[90%] md:w-[70%] max-h-[90vh] overflow-y-auto rounded-xl shadow-lg p-6"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Back Button */}
             <button
               className="absolute top-4 left-4 bg-gray-200 text-gray-800 px-3 py-1 rounded"
-              onClick={() => setExpandedPlace(null)}
+              onClick={() => setExpandedIndex(null)}
             >
               ← Back
             </button>
 
+            {/* Next/Previous Buttons */}
+            <div className="absolute top-4 right-4 flex gap-2">
+              <button
+                disabled={expandedIndex <= 0}
+                onClick={() => setExpandedIndex((prev) => prev - 1)}
+                className={`px-3 py-1 rounded ${expandedIndex <= 0 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-200 text-gray-800'}`}
+              >
+                ← Prev
+              </button>
+              <button
+                disabled={expandedIndex >= places.length - 1}
+                onClick={() => setExpandedIndex((prev) => prev + 1)}
+                className={`px-3 py-1 rounded ${expandedIndex >= places.length - 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-200 text-gray-800'}`}
+              >
+                Next →
+              </button>
+            </div>
+
+            {/* Modal Content */}
             <img
               src={expandedPlace?.heroImage}
               alt={expandedPlace.title}
               className="rounded-lg mb-6 w-full object-cover max-h-80"
             />
             <h2 className="text-3xl font-bold mb-4">{expandedPlace.title}</h2>
-            {[...Array(5)].map((_, i) => {
-              const key = `fullDescription${i === 0 ? '' : i + 1}`;
-              return (
-                expandedPlace[key] && (
-                  <p key={key} className="text-gray-700 leading-relaxed mb-6">
-                    {expandedPlace[key]}
-                  </p>
-                )
-              );
-            })}
+            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription}</p>
+            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription2}</p>
+            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription3}</p>
+            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription4}</p>
+            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription5}</p>
             {expandedPlace.gallery?.length > 0 && (
               <div className="mt-8">
                 <h3 className="text-xl font-semibold mb-4">Gallery</h3>

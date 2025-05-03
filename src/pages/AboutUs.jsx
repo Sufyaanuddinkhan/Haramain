@@ -208,6 +208,8 @@ function Aboutus() {
       <TestimonialsSection />
       <TeamSection />
       <ContactUs />
+{window.scrollTo(0, 0)}
+
     </>
   );
 }
