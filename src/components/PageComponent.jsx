@@ -407,7 +407,7 @@ export const ContactUs = () => {
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     try {
       // Use the environment variable for dynamic URL
-      const baseUrl = import.meta.env.VITE_BASE_API_URL;
+      const baseUrl = import.meta.env.VITE_API_URL;
   
       const response = await fetch(`${baseUrl}/contact`, {
         method: 'POST',
@@ -563,7 +563,7 @@ export const EnquiryForm = ({ packageId }) => {
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const baseUrl = import.meta.env.VITE_BASE_API_URL;
+        const baseUrl = import.meta.env.VITE_API_URL;
         const res = await fetch(`${baseUrl}/enquiry`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
