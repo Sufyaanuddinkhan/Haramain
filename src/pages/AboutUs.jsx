@@ -5,6 +5,7 @@ import {
   Card,
   PlacesCards,
   ContactUs,
+  EnquiryForm
 } from "../components/PageComponent";
 
 // Use public image
@@ -203,7 +204,7 @@ function Aboutus() {
           <PlacesCards places={hajjPackages} title="Hajj Packages" />
         </div>
       </div>
-
+      <EnquiryForm packageId="umrah2095"/>
       <TestimonialsSection />
       <TeamSection />
       <ContactUs />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HeroSection, ImageTextSection, ExpandableCard } from '../components/PageComponent';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const menuItems = [
   { label: 'History' },

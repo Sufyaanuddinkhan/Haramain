@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HeroSection, ImageTextSection, ExpandableCard } from "../components/PageComponent";
 import { FaMapMarkerAlt, FaMosque, FaKaaba, FaLandmark, FaStarOfDavid } from 'react-icons/fa';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const menuItems = [
   { label: 'History', icon: <FaMapMarkerAlt /> },

@@ -1,9 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Button, FormLabel, TextField, TextareaAutosize } from "@mui/material";
+import { Button, FormLabel, TextField, TextareaAutosize, Box, Typography, Paper } from "@mui/material";
 import { Link } from "react-router-dom";
 // import { HiOutlineMail } from "react-icons/hi"; // Icon for email
 import { motion } from "framer-motion";  // Import Framer Motion for animations
- 
+const API_URL = import.meta.env.VITE_API_URL;
+import { Formik, Form, Field, ErrorMessage,useFormik} from "formik";
+import * as Yup from "yup";
+// import TextareaAutosize from "react-textarea-autosize";
+// import { Button } from "@/components/ui/button";
+// import { FormLabel } from "@/components/ui/label";
+// import { TextField } from "@/components/ui/textfield";
 //MAKKAH AND MADINA herosection
 
 export const HeroSection = ({
@@ -248,21 +254,20 @@ export const PlacesCards = ({ title, places }) => {
   );
 };
 //Json Cards 
-
 export const ExpandableCard = ({ title, file }) => {
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedPlace, setExpandedPlace] = useState(null);
 
   useEffect(() => {
-    fetch(`/data/${file}`) // Corrected fetch path
+    fetch(`${API_URL}/data/${file.replace('.json', '')}`)
       .then((res) => res.json())
       .then((data) => {
         setPlaces(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error(`Failed to fetch from ${file}:`, err);
+        console.error(`Failed to fetch from API:`, err);
         setLoading(false);
       });
   }, [file]);
@@ -330,11 +335,16 @@ export const ExpandableCard = ({ title, file }) => {
               className="rounded-lg mb-6 w-full object-cover max-h-80"
             />
             <h2 className="text-3xl font-bold mb-4">{expandedPlace.title}</h2>
-            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription}</p>
-            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription2}</p>
-            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription3}</p>
-            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription4}</p>
-            <p className="text-gray-700 leading-relaxed mb-6">{expandedPlace.fullDescription5}</p>
+            {[...Array(5)].map((_, i) => {
+              const key = `fullDescription${i === 0 ? '' : i + 1}`;
+              return (
+                expandedPlace[key] && (
+                  <p key={key} className="text-gray-700 leading-relaxed mb-6">
+                    {expandedPlace[key]}
+                  </p>
+                )
+              );
+            })}
             {expandedPlace.gallery?.length > 0 && (
               <div className="mt-8">
                 <h3 className="text-xl font-semibold mb-4">Gallery</h3>
@@ -357,8 +367,58 @@ export const ExpandableCard = ({ title, file }) => {
   );
 };
 
+
 // Contact Us Form
 export const ContactUs = () => {
+  const initialValues = {
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    phone: Yup.string()
+      .matches(/^[0-9\-+() ]*$/, "Invalid phone number")
+      .required("Phone number is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    message: Yup.string().required("Message is required"),
+  });
+
+  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+    try {
+      // Use the environment variable for dynamic URL
+      const baseUrl = import.meta.env.VITE_BASE_API_URL || 'http://localhost:5000/api';
+  
+      const response = await fetch(`${baseUrl}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        alert(data.message || "Your message has been sent successfully!");
+        resetForm(); // Clear form
+      } else {
+        alert(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("An error occurred. Please try again later.");
+    } finally {
+      setSubmitting(false); // Enable submit button again
+    }
+  };
+  
+  
+  
+  
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-3xl p-6 bg-white shadow-xl rounded-lg">
@@ -366,77 +426,204 @@ export const ContactUs = () => {
           Contact Us
         </h2>
 
-        <form action="#" method="POST">
-          {/* Name field */}
-          <div className="mb-6">
-            <FormLabel htmlFor="name" className="mb-2 block text-gray-800">
-              Your Name
-            </FormLabel>
-            <TextField
-              id="name"
-              name="name"
-              placeholder="John Doe"
-              type="text"
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
-            />
-          </div>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ touched, errors }) => (
+            <Form>
+              {/* Name */}
+              <div className="mb-6">
+                <FormLabel htmlFor="name" className="mb-2 block text-gray-800">
+                  Your Name
+                </FormLabel>
+                <Field
+                  as={TextField}
+                  id="name"
+                  name="name"
+                  placeholder="John Doe"
+                  type="text"
+                  className="w-full border border-gray-300 rounded-md px-4 py-2"
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="text-red-600 text-sm mt-1"
+                />
+              </div>
 
-          {/* Phone number field */}
-          <div className="mb-6">
-            <FormLabel htmlFor="phone" className="mb-2 block text-gray-800">
-              Phone Number
-            </FormLabel>
-            <TextField
-              id="phone"
-              name="phone"
-              placeholder="123-456-7890"
-              type="tel"
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
-            />
-          </div>
+              {/* Phone */}
+              <div className="mb-6">
+                <FormLabel htmlFor="phone" className="mb-2 block text-gray-800">
+                  Phone Number
+                </FormLabel>
+                <Field
+                  as={TextField}
+                  id="phone"
+                  name="phone"
+                  placeholder="123-456-7890"
+                  type="tel"
+                  className="w-full border border-gray-300 rounded-md px-4 py-2"
+                />
+                <ErrorMessage
+                  name="phone"
+                  component="div"
+                  className="text-red-600 text-sm mt-1"
+                />
+              </div>
 
-          {/* Email field */}
-          <div className="mb-6">
-            <FormLabel htmlFor="email" className="mb-2 block text-gray-800">
-              Your Email
-            </FormLabel>
-            <TextField
-              id="email"
-              name="email"
-              placeholder="name@company.com"
-              type="email"
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
-            />
-          </div>
+              {/* Email */}
+              <div className="mb-6">
+                <FormLabel htmlFor="email" className="mb-2 block text-gray-800">
+                  Your Email
+                </FormLabel>
+                <Field
+                  as={TextField}
+                  id="email"
+                  name="email"
+                  placeholder="name@company.com"
+                  type="email"
+                  className="w-full border border-gray-300 rounded-md px-4 py-2"
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-red-600 text-sm mt-1"
+                />
+              </div>
 
-          {/* Message field */}
-          <div className="mb-6">
-            <FormLabel htmlFor="message" className="mb-2 block text-gray-800">
-              Your Message
-            </FormLabel>
-            <TextareaAutosize
-              id="message"
-              name="message"
-              placeholder="Your message..."
-              rows={4}
-              className="w-full border border-gray-300 rounded-md px-4 py-2"
-            />
-          </div>
+              {/* Message */}
+              <div className="mb-6">
+                <FormLabel htmlFor="message" className="mb-2 block text-gray-800">
+                  Your Message
+                </FormLabel>
+                <Field
+                  as={TextareaAutosize}
+                  id="message"
+                  name="message"
+                  placeholder="Your message..."
+                  rows={4}
+                  className="w-full border border-gray-300 rounded-md px-4 py-2"
+                />
+                <ErrorMessage
+                  name="message"
+                  component="div"
+                  className="text-red-600 text-sm mt-1"
+                />
+              </div>
 
-          {/* Submit button */}
-          <Button
-            type="submit"
-            className="w-full py-3 bg-primary text-white rounded-md hover:bg-primary-dark transition duration-300"
-          >
-            Send Message
-          </Button>
-        </form>
-
-
+              <Button
+                type="submit"
+                className="w-full py-3 bg-primary text-white rounded-md hover:bg-primary-dark transition duration-300"
+              >
+                Send Message
+              </Button>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );
 };
+
+
+
+//Enquiry Form
+export const EnquiryForm = ({ packageId }) => {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      phone: '',
+      packageId: packageId || '',
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required('Name is required'),
+      phone: Yup.string()
+        .matches(/^[0-9]{10}$/, 'Phone must be 10 digits')
+        .required('Phone is required'),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        const baseUrl = import.meta.env.VITE_BASE_API_URL || 'http://localhost:5000/api';
+        const res = await fetch(`${baseUrl}/enquiry`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+        });
+        if (res.ok) {
+          alert('Enquiry submitted successfully!');
+          resetForm();
+        } else {
+          alert('Failed to submit enquiry.');
+        }
+      } catch (error) {
+        alert('Something went wrong.');
+        console.error(error);
+      }
+    },
+  });
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Paper elevation={3} sx={{ p: 3, borderRadius: 3, maxWidth: 400, mx: 'auto' }}>
+        <Typography variant="h6" gutterBottom>
+          Enquire Now
+        </Typography>
+        <form onSubmit={formik.handleSubmit}>
+          <TextField
+            fullWidth
+            id="name"
+            name="name"
+            label="Your Name"
+            margin="normal"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            error={formik.touched.name && Boolean(formik.errors.name)}
+            helperText={formik.touched.name && formik.errors.name}
+          />
+
+          <TextField
+            fullWidth
+            id="phone"
+            name="phone"
+            label="Phone Number"
+            margin="normal"
+            value={formik.values.phone}
+            onChange={formik.handleChange}
+            error={formik.touched.phone && Boolean(formik.errors.phone)}
+            helperText={formik.touched.phone && formik.errors.phone}
+          />
+
+          <TextField
+            fullWidth
+            id="package"
+            name="package"
+            label="Package ID"
+            margin="normal"
+            value={formik.values.packageId}
+            disabled
+          />
+
+          <Box mt={2}>
+            <Button color="primary" variant="contained" fullWidth type="submit">
+              Submit
+            </Button>
+          </Box>
+        </form>
+      </Paper>
+    </motion.div>
+  );
+};
+
+
+
+
+
 //popup ad
 
 export  function PopupAd() {
