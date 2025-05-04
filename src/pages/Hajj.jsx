@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HeroSection } from "../components/PageComponent.jsx";
-import hajjBanner from "../assets/makkah/rp/kaaba.jpg";
-import meccaUmrah from '../assets/umrah/mecca-umrah.webp';
-
+import { HeroSection } from '../components/PageComponent';
 const hajjSteps = [
   {
     title: "Ihram & Niyyah",
-    image: meccaUmrah,
+    image: "/image/umrah/mecca-umrah.webp",
     content: [
       "Enter the state of Ihram before reaching the Miqat.",
       "Make a sincere intention to perform Umrah.",
@@ -16,7 +13,7 @@ const hajjSteps = [
   },
   {
     title: "Tawaf",
-    image: meccaUmrah,
+    image: "/image/umrah/mecca-umrah.webp",
     content: [
       "Perform 7 circuits around the Kaaba starting from the Black Stone.",
       "Ensure you remain in a state of Wudu (ablution)."
@@ -24,7 +21,7 @@ const hajjSteps = [
   },
   {
     title: "Pray at Maqam Ibrahim",
-    image: meccaUmrah,
+    image: "/image/umrah/mecca-umrah.webp",
     content: [
       "Offer 2 Rak’ahs behind Maqam Ibrahim.",
       "Drink Zamzam water after prayer."
@@ -32,7 +29,7 @@ const hajjSteps = [
   },
   {
     title: "Sa’i between Safa & Marwah",
-    image: meccaUmrah,
+    image: "/image/umrah/mecca-umrah.webp",
     content: [
       "Walk 7 times between the hills of Safa and Marwah.",
       "Begin at Safa and end at Marwah, remembering Hajar’s devotion."
@@ -40,7 +37,7 @@ const hajjSteps = [
   },
   {
     title: "Halq or Taqsir",
-    image: meccaUmrah,
+    image: "/image/umrah/mecca-umrah.webp",
     content: [
       "Men shave their heads (Halq) or shorten their hair (Taqsir).",
       "Women cut a small portion of their hair.",
@@ -49,7 +46,7 @@ const hajjSteps = [
   },
   {
     title: "Arrival at Masjid al-Haram",
-    image: meccaUmrah,
+    image: "/image/umrah/mecca-umrah.webp",
     content: [
       "Arrive at the Masjid al-Haram and stand in awe of the Kaaba.",
       "Make Du'a for peace and blessings during your stay."
@@ -57,7 +54,7 @@ const hajjSteps = [
   },
   {
     title: "Dua at the Kaaba",
-    image: meccaUmrah,
+    image: "/image/umrah/mecca-umrah.webp",
     content: [
       "Stand near the Kaaba and make personal supplications (Dua).",
       "It is recommended to pray for yourself, family, and the Ummah."
@@ -65,7 +62,7 @@ const hajjSteps = [
   },
   {
     title: "Drinking Zamzam Water",
-    image: meccaUmrah,
+    image: "/image/umrah/mecca-umrah.webp",
     content: [
       "Drink Zamzam water after performing Tawaf and Sa'i.",
       "It is a sacred and blessed drink, providing spiritual nourishment."
@@ -73,15 +70,13 @@ const hajjSteps = [
   },
   {
     title: "Visit to Medina (Optional)",
-    image: meccaUmrah,
+    image: "/image/umrah/mecca-umrah.webp",
     content: [
       "A visit to the Prophet’s Mosque (Masjid an-Nabawi) is optional but highly recommended.",
       "Offer prayers and seek blessings at the tomb of Prophet Muhammad (PBUH)."
     ]
   }
 ];
-
-// --- Timeline Section ---
 
 function TimelineSection1() {
   const steps = [
@@ -97,42 +92,22 @@ function TimelineSection1() {
     <div className="relative w-full overflow-x-auto py-16">
       <h2 className="text-3xl font-bold mb-12 text-center">Pilgrimage Journey Timeline</h2>
       <div className="relative flex w-max mx-auto items-center justify-between px-8">
-        {/* Horizontal line */}
-        <div className="absolute left-0 right-0 top-1/2 h-1 bg-amber-900 z-100" />
-  
+        <div className="absolute left-0 right-0 top-1/2 h-1 bg-amber-900 z-0" />
+
         {steps.map((step, index) => (
           <div key={index} className="relative z-10 flex flex-col items-center w-40 mx-4">
-            {/* When on top (even) */}
-            {index % 2 === 0 && (
+            {index % 2 === 0 ? (
               <>
                 <div className="mb-2 text-center">
                   <div className="font-semibold text-purple-800">Step {index + 1}</div>
                   <div className="text-xs text-amber-700 mt-1">{step}</div>
                 </div>
                 <div className="w-0.5 h-6 bg-gray-400 mb-2"></div>
-                <div
-                  className={`w-16 h-6 ${
-                    index === 0
-                      ? "bg-gradient-to-r from-yellow-400 to-amber-500 border-4 border-white shadow-lg"
-                      : "bg-amber-400"
-                  } rounded-md`}
-                ></div>
+                <div className="w-16 h-6 bg-amber-400 rounded-md"></div>
               </>
-            )}
-
-  {window.scrollTo(0, 0)}
-
-  
-            {/* When on bottom (odd) */}
-            {index % 2 !== 0 && (
+            ) : (
               <>
-                <div
-                  className={`w-16 h-6 ${
-                    index === steps.length - 1
-                      ? "bg-amber-500 relative after:content-[''] after:absolute after:right-[-12px] after:top-1/2 after:-translate-y-1/2 after:border-y-[6px] after:border-l-[10px] after:border-l-amber-500 after:border-y-transparent"
-                      : "bg-amber-400"
-                  } rounded-md`}
-                ></div>
+                <div className="w-16 h-6 bg-amber-400 rounded-md"></div>
                 <div className="w-0.5 h-6 bg-gray-400 mt-2"></div>
                 <div className="mt-2 text-center">
                   <div className="font-semibold text-purple-800">Step {index + 1}</div>
@@ -145,11 +120,7 @@ function TimelineSection1() {
       </div>
     </div>
   );
-  
-  
-  
 }
-
 
 const HajjPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -165,14 +136,27 @@ const HajjPage = () => {
   const prevStep = () => setCurrentStep((prev) => (prev - 1 + hajjSteps.length) % hajjSteps.length);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <HeroSection
-        title="Hajj – The Journey of a Lifetime"
-        subtitle="Experience the sacred pilgrimage to the House of Allah"
-        backgroundImage={hajjBanner}
-      />
+<div>
+          <HeroSection
+            title="Hajj"
+            subtitle="The Fifth Pillar of Islam — A Journey of Worship, Unity, and Renewal."
+            backgroundImage="/images/hajj/kaaba.jpg" 
+            hadithText='Whoever performs Hajj for the sake of Allah and does not commit any obscenity or evil, he will return as the day his mother bore him (free from sin).'
+            hadithSource="Sahih Muslim 1350"
+           
+          />
+<TimelineSection1 />
 
-      <TimelineSection1 />
+    {/* <div className="flex flex-col items-center justify-center">
+      <div className="relative w-full h-80 bg-cover bg-center" style={{ backgroundImage: `url()` }}>
+        <div className="absolute inset-0 bg-opacity-10 flex flex-col items-center justify-center">
+          <h1 className="text-white text-4xl font-bold">Hajj – The Journey of a Lifetime</h1>
+          <p className="text-white mt-2">Experience the sacred pilgrimage to the House of Allah</p>
+          
+        </div>
+      </div> */}
+
+      
 
       <div className="flex flex-col items-center justify-center p-6 w-full">
         <div className="relative w-full max-w-3xl h-[450px] overflow-hidden rounded-2xl shadow-2xl bg-white">
@@ -233,6 +217,7 @@ const HajjPage = () => {
         </div>
       </div>
     </div>
+  
   );
 };
 

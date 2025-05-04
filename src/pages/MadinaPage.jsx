@@ -77,16 +77,16 @@ const MadinaPage = () => {
             <p className="text-center mb-4">
               Built by the Prophet Muhammad ﷺ himself, it is one of the largest mosques in the world and holds great religious importance. It houses the Green Dome under which lies the tomb of the Prophet and his companions, Abu Bakr and Umar.
             </p>
-            <ExpandableCard title="Explore The Prophet’s Mosque" file="masjid_nabawi.json" />
+            <ExpandableCard title="Explore The Prophet’s Mosque" file="masjid_nabawi" />
           </section>
         )}
 
         {selected === 'Attractions' && (
-          <ExpandableCard title="Attractions in Madina" file="madina_at.json" />
+          <ExpandableCard title="Attractions in Madina" file="madina_at" />
         )}
 
         {selected === 'Holy Sites' && (
-          <ExpandableCard title="Holy Places in Madina" file="madina_hp.json" />
+          <ExpandableCard title="Holy Places in Madina" file="madina_hp" />
         )}
       </div>
     </div>

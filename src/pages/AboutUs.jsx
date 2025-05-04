@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
-  Hero,
+  HeroSection,
   ImageTextSection,
   Card,
   PlacesCards,
@@ -9,7 +9,6 @@ import {
 } from "../components/PageComponent";
 
 // Use public image
-const banner = "/images/umrah/about2.jpg";
 
 const packagesData = [
   {
@@ -166,10 +165,10 @@ const hajjPackages = packagesData.filter((pkg) =>
 function Aboutus() {
   return (
     <>
-      <Hero
+      <HeroSection
         title="Reconnect with Your Faith, Let Us Guide You"
-        description="Begin your sacred journey with confidence, comfort, and care."
-        backgroundImage={banner}
+        subtitle="Begin your sacred journey with confidence, comfort, and care."
+        backgroundImage="/images/umrah/about2.jpg"
       />
 
       <ImageTextSection

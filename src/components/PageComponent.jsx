@@ -10,8 +10,8 @@ import * as Yup from "yup";
 // import { Button } from "@/components/ui/button";
 // import { FormLabel } from "@/components/ui/label";
 // import { TextField } from "@/components/ui/textfield";
-//MAKKAH AND MADINA herosection
 
+//herosection
 export const HeroSection = ({
   title,
   subtitle,
@@ -35,28 +35,38 @@ export const HeroSection = ({
   const opacity = 1 - cappedScroll / heroHeight;
 
   return (
-    <motion.div
-      className="relative h-[80vh] bg-cover bg-center text-white overflow-hidden"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
+    <div className="relative w-full h-[80vh] overflow-hidden">
+      {/* Animated Background Image */}
+      <motion.img
+        src={backgroundImage}
+        alt="Hero Background"
+        initial={{ scale: 1.2, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        className="w-full h-full object-cover"
+      />
+
+      {/* Black Overlay */}
       <div className="absolute inset-0 bg-black/50 z-0" />
 
+      {/* Text Content */}
       <div
-        className="absolute top-10 left-1/2 z-10 max-w-3xl w-[90%] text-center px-4"
+        className="absolute top-10 left-1/2 z-10 w-[90%] md:w-[80%] text-center px-4"
         style={{
           transform: `translate(-50%, ${translateY}px)`,
           opacity,
         }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
-        <p className="text-lg md:text-xl">{subtitle}</p>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white break-words">
+          {title}
+        </h1>
+        <p className="text-lg md:text-xl text-white break-words">
+          {subtitle}
+        </p>
 
         {/* Dynamic Hadith Section */}
         {hadithText && (
-          <div className="mt-8 bg-white/30 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-lg">
+          <div className="mt-8 mx-auto w-[90%] md:w-[62%] bg-white/30 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-lg">
             <p className="text-sm md:text-base italic text-white leading-relaxed">
               “{hadithText}”
               {hadithSource && (
@@ -66,9 +76,10 @@ export const HeroSection = ({
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 };
+
 
 //homepage card
 export const Card = ({
@@ -125,34 +136,7 @@ export const Card = ({
     </Link>
   );
 };
-//hero without scroll
-export const Hero = ({
-  backgroundImage,
-  title,
-  description,
-  buttonText,
-  buttonLink,
-}) => {
-  return (
-    <section
-      className="bg-cover bg-center min-h-[70vh] md:min-h-[80vh] flex items-end justify-start text-white"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      <div className="bg-black bg-opacity-50 p-6 md:p-8 rounded-xl m-4">
-        <h2 className="text-2xl md:text-4xl font-bold mb-4">{title}</h2>
-        <p className="text-base md:text-lg mb-6">{description}</p>
-        {buttonText && buttonLink && (
-          <a
-            href={buttonLink}
-            className="bg-yellow-600 text-white px-5 py-2 md:px-6 md:py-3 rounded-md font-semibold hover:bg-black transition duration-300"
-          >
-            {buttonText}
-          </a>
-        )}
-      </div>
-    </section>
-  );
-};
+
 //section for displaying an image and text side by side
 export const ImageTextSection = ({
   image = null,
@@ -261,7 +245,7 @@ export const ExpandableCard = ({ title, file }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   useEffect(() => {
-    fetch(`/data/${file}`) // Corrected fetch path
+    fetch(`${API_URL}/data/${file}`) // Corrected fetch path
       .then((res) => res.json())
       .then((data) => {
         setPlaces(data);
@@ -407,9 +391,7 @@ export const ContactUs = () => {
   const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     try {
       // Use the environment variable for dynamic URL
-      const baseUrl = import.meta.env.VITE_API_URL;
-  
-      const response = await fetch(`${baseUrl}/contact`, {
+      const response = await fetch(`${API_URL}/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -563,8 +545,7 @@ export const EnquiryForm = ({ packageId }) => {
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const baseUrl = import.meta.env.VITE_API_URL;
-        const res = await fetch(`${baseUrl}/enquiry`, {
+        const res = await fetch(`${API_URL}/enquiry`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(values),
@@ -643,13 +624,20 @@ export const EnquiryForm = ({ packageId }) => {
 
 
 //popup ad
-
-export  function PopupAd() {
+export function PopupAd() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 2000); // 2 sec delay
-    return () => clearTimeout(timer);
+    const hasShown = sessionStorage.getItem("popup_shown");
+
+    if (!hasShown) {
+      const timer = setTimeout(() => {
+        setShow(true);
+        sessionStorage.setItem("popup_shown", "true");
+      }, 6000); // 6 seconds delay
+
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   if (!show) return null;
@@ -659,7 +647,7 @@ export  function PopupAd() {
       <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full text-center relative">
         <button
           onClick={() => setShow(false)}
-          className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
+          className="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl"
         >
           &times;
         </button>

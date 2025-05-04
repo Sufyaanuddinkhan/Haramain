@@ -1,144 +1,122 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaHome, FaInfoCircle, FaServicestack, FaPhoneAlt } from 'react-icons/fa';
+import { HeroSection } from "../components/PageComponent";
 
-// Update image paths to point to the public/images folder
-const meccaUmrah = '/images/umrah/mecca-umrah.webp'; // Assuming the image is placed in public/images/umrah folder
-
-const UmrahHero = () => {
-  return (
-    <div className="relative w-full h-[60vh] overflow-hidden rounded-b-3xl shadow-lg">
-      <motion.img
-        src={meccaUmrah}
-        alt="Umrah Hero"
-        initial={{ scale: 1.2, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 2, ease: "easeOut" }}
-        className="w-full h-full object-cover"
-      />
-      
-      <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center text-white px-4">
-        <motion.h1
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="text-4xl md:text-5xl font-bold"
-        >
-          Umrah Guide
-        </motion.h1>
-        <motion.p
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="mt-4 text-lg md:text-xl max-w-2xl"
-        >
-          Step-by-step journey to complete your sacred Umrah rituals with peace and devotion.
-        </motion.p>
-      </div>
-    </div>
-    
-  );
-};
-
-
+// Image Paths
 
 const umrahSteps = [
   {
     title: "Ihram & Niyyah",
-    image: '/images/umrah/mecca-umrah.webp',  // Update image path
+    image: '/images/umrah/IhramNiyyah.webp',
     content: [
-      "Enter the state of Ihram before reaching the Miqat.",
-      "Make a sincere intention to perform Umrah.",
-      "Men wear unstitched white garments, women wear modest dress."
+      "Enter the state of Ihram before reaching the Miqat. This is a sacred state that helps purify the soul.",
+      "Make a sincere intention (Niyyah) to perform Umrah for the sake of Allah.",
+      "Men wear unstitched white garments, while women wear a simple, modest dress covering the whole body.",
+      "Make sure to recite the Talbiyah upon entering Ihram and maintain it throughout your journey.",
+      "Avoid any sinful actions or behavior while in the state of Ihram, as this will invalidate your Umrah."
     ]
   },
   {
     title: "Tawaf",
-    image: '/images/umrah/mecca-umrah.webp',  // Update image path
+    image: '/images/umrah/tawaf.webp',
     content: [
-      "Perform 7 circuits around the Kaaba starting from the Black Stone.",
-      "Ensure you remain in a state of Wudu (ablution)."
+      "Perform 7 circuits around the Kaaba starting from the Black Stone (Al-Hajar Al-Aswad).",
+      "Ensure you are in a state of Wudu (ablution) before beginning Tawaf.",
+      "Each circuit represents a symbolic act of closeness to Allah. Remember that the Tawaf is a spiritual act, not just a physical one.",
+      "Try to perform Tawaf with deep concentration and humility, focusing on your prayers.",
+      "After completing Tawaf, offer 2 Rak'ahs of prayer behind the Maqam Ibrahim, a place revered for its association with Prophet Ibrahim (AS)."
     ]
   },
   {
     title: "Pray at Maqam Ibrahim",
-    image: '/images/umrah/mecca-umrah.webp',  // Update image path
+    image: '/images/umrah/MaqaIbrahim.webp',
     content: [
-      "Offer 2 Rak’ahs behind Maqam Ibrahim.",
-      "Drink Zamzam water after prayer."
+      "After Tawaf, head towards Maqam Ibrahim (the Station of Ibrahim) and offer 2 Rak'ahs of prayer.",
+      "This prayer is highly recommended and a chance for personal supplication. Ask Allah for forgiveness and blessings for yourself and your loved ones.",
+      "Drink Zamzam water, a blessed source of water that was miraculously provided to Hajar (the mother of Prophet Isma'il).",
+      "The Maqam Ibrahim is where Prophet Ibrahim (AS) stood while building the Kaaba with his son Isma'il (AS)."
     ]
   },
   {
     title: "Sa’i between Safa & Marwah",
-    image: '/images/umrah/mecca-umrah.webp',  // Update image path
+    image: '/images/umrah/SafaMarwah.webp',
     content: [
-      "Walk 7 times between the hills of Safa and Marwah.",
-      "Begin at Safa and end at Marwah, remembering Hajar’s devotion."
+      "Walk 7 times between the hills of Safa and Marwah, starting at Safa and ending at Marwah.",
+      "Sa’i commemorates the act of Hajar searching for water for her son Isma'il (AS).",
+      "While walking, remember Hajar's devotion and trust in Allah’s plan.",
+      "It's a highly spiritual part of the pilgrimage, and you should make du'a (supplication) as you walk between the hills.",
+      "After completing the Sa’i, you will feel spiritually renewed, reflecting the faith and resilience of Hajar."
     ]
   },
   {
     title: "Halq or Taqsir",
-    image: '/images/umrah/mecca-umrah.webp',  // Update image path
+    image: '/images/umrah/HalqorTaqsir.webp',
     content: [
-      "Men shave their heads (Halq) or shorten their hair (Taqsir).",
-      "Women cut a small portion of their hair.",
-      "This marks the end of Umrah."
+      "The final step of Umrah involves the ritual of Halq (shaving the head) or Taqsir (shortening the hair).",
+      "Men who perform Halq shave their heads completely, symbolizing the shedding of sin and a fresh start.",
+      "Women are encouraged to cut a small portion of their hair, signifying the same sense of spiritual renewal.",
+      "This ritual symbolizes the completion of your Umrah and marks a moment of humility before Allah.",
+      "It's a reminder that true spiritual transformation comes from surrendering to the will of Allah."
     ]
   },
   {
     title: "Arrival at Masjid al-Haram",
-    image: '/images/umrah/mecca-umrah.webp',  // Update image path
+    image: '/images/umrah/MasjidalHaram.webp',
     content: [
-      "Arrive at the Masjid al-Haram and stand in awe of the Kaaba.",
-      "Make Du'a for peace and blessings during your stay."
+      "Upon arrival at Masjid al-Haram in Mecca, stand in awe of the Kaaba, the House of Allah.",
+      "Take a moment to offer a prayer of gratitude for your journey and the opportunity to perform Umrah.",
+      "The Masjid al-Haram is the holiest mosque in Islam, and it’s where millions of Muslims gather for prayer daily.",
+      "Make du'a for yourself, your family, and the entire Muslim ummah. Ask for peace, health, and guidance.",
+      "Remember, the experience of seeing the Kaaba is a deeply emotional one, and it's important to take it in with sincerity and awe."
     ]
   },
   {
     title: "Dua at the Kaaba",
-    image: '/images/umrah/mecca-umrah.webp',  // Update image path
+    image: '/images/umrah/DuaattheKaaba.webp',
     content: [
       "Stand near the Kaaba and make personal supplications (Dua).",
-      "It is recommended to pray for yourself, family, and the Ummah."
+      "This is a powerful moment, as Allah is closest to His servant when they are making sincere supplications in front of the Kaaba.",
+      "Pray for your desires, for the Muslim ummah, and for peace and harmony in the world.",
+      "Remember that this moment is a gift, as it's a rare and blessed opportunity to be in direct proximity to the Kaaba.",
+      "Offer gratitude for the privilege of being there and make heartfelt du'a for yourself and your loved ones."
     ]
   },
   {
     title: "Drinking Zamzam Water",
-    image: '/images/umrah/mecca-umrah.webp',  // Update image path
+    image: '/images/umrah/DrinkingZamzamWater.webp',
     content: [
-      "Drink Zamzam water after performing Tawaf and Sa'i.",
-      "It is a sacred and blessed drink, providing spiritual nourishment."
+      "Drink Zamzam water, a source of blessings and purity. It was miraculously provided to Hajar and her son Isma'il (AS).",
+      "The Prophet Muhammad (PBUH) recommended drinking Zamzam water for healing, both physically and spiritually.",
+      "Many pilgrims find strength and peace from drinking Zamzam, and it is often shared among family and friends as a reminder of their journey.",
+      "After drinking Zamzam, make du'a for your health, prosperity, and the well-being of your family and community."
     ]
   },
   {
     title: "Visit to Medina (Optional)",
-    image: '/images/umrah/mecca-umrah.webp',  // Update image path
+    image: '/images/umrah/VisittoMedina.webp',
     content: [
-      "A visit to the Prophet’s Mosque (Masjid an-Nabawi) is optional but highly recommended.",
-      "Offer prayers and seek blessings at the tomb of Prophet Muhammad (PBUH)."
+      "A visit to Medina and the Prophet’s Mosque (Masjid an-Nabawi) is optional, but highly recommended for spiritual enrichment.",
+      "In Medina, offer prayers at the Prophet’s Mosque and visit the tomb of Prophet Muhammad (PBUH).",
+      "It is a place of immense blessing, and visiting the grave of the Prophet allows you to offer peace and blessings (Salat) upon him.",
+      "Prayers offered in Masjid an-Nabawi hold immense reward, and visiting the Rawdah (the space between the Prophet’s tomb and his pulpit) is a highly revered act.",
+      "Take time to reflect on the teachings and example of Prophet Muhammad (PBUH) and pray for the guidance to follow his path."
     ]
   }
 ];
 
-const menuItems = [
-  { label: 'History', content: 'Detailed history content here.' },
-  { label: 'Cultural & Spiritual Significance', content: 'Cultural and spiritual significance content here.' },
-  { label: 'Grand Mosque', content: 'Grand Mosque content here.' },
-  { label: 'Attractions', content: 'Attractions content here.' },
-  { label: 'Holy Sites', content: 'Holy sites content here.' },
-  { label: 'Getting to Makkah', content: 'Travel information content here.' },
-];
 
+
+// Main Component
 const Umrah = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       nextStep();
-    }, 6000);
+    }, 90000);
+
     return () => clearInterval(interval);
   }, [currentStep]);
-
-
 
   const nextStep = () => {
     setCurrentStep((prev) => (prev + 1) % umrahSteps.length);
@@ -153,13 +131,19 @@ const Umrah = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-full">
       {/* Hero Section */}
-      <UmrahHero />
-      
-      {/* Main Slider */}
+            <HeroSection
+              title="Umrah"
+              subtitle="Purify Your Soul, Strengthen Your Faith, and Seek Divine Mercy"
+              backgroundImage="/images/umrah/mecca-umrah.webp" // Updated path
+              hadithText="The Prophet ﷺ said: 'Whoever performs Umrah and visits the Sacred House of Allah (the Ka'bah) and performs Tawaf, will have his sins forgiven.'"
+              hadithSource="Sunan Ibn Majah 2870"
+            />
+
+      {/* Umrah Step Slider */}
       <div className="flex flex-col items-center justify-center p-6 w-full">
-        <div className="relative w-full max-w-3xl h-[450px] overflow-hidden rounded-2xl shadow-2xl bg-white">
+        <div className="relative w-full max-w-3xl h-[600px] overflow-hidden rounded-2xl shadow-2xl bg-white">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -171,18 +155,15 @@ const Umrah = () => {
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.8}
               onDragEnd={(event, info) => {
-                if (info.offset.x < -100) {
-                  nextStep();
-                } else if (info.offset.x > 100) {
-                  prevStep();
-                }
+                if (info.offset.x < -100) nextStep();
+                else if (info.offset.x > 100) prevStep();
               }}
               className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center p-6 cursor-grab"
             >
               <img
                 src={umrahSteps[currentStep].image}
                 alt={umrahSteps[currentStep].title}
-                className="w-full h-52 object-cover rounded-lg mb-4"
+                className="w-full h-80 object-contain rounded-lg mb-4 bg-white"
               />
               <h2 className="text-2xl font-bold mb-2 text-center">{umrahSteps[currentStep].title}</h2>
               <ul className="text-gray-700 text-sm list-disc list-inside space-y-1">
@@ -210,7 +191,7 @@ const Umrah = () => {
           </button>
         </div>
 
-        {/* Mini Thumbnail Slider */}
+        {/* Thumbnail Navigation */}
         <div className="flex overflow-x-auto w-full max-w-4xl mt-6 space-x-3 px-4 pb-2">
           {umrahSteps.map((step, index) => (
             <motion.div

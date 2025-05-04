@@ -21,7 +21,7 @@ const MakkahPage = () => {
       <HeroSection
         title="Welcome to Makkah!"
         subtitle="The sacred heart of Islam, home to the Kaaba"
-        hadithText="“By Allah, you are the best and most beloved land to Allah. Had I not been driven away from you, I would not have left you.”"
+        hadithText="By Allah, you are the best and most beloved land to Allah. Had I not been driven away from you, I would not have left you."
         hadithSource="Sunan al-Tirmidhī 3925"
         backgroundImage="/images/makkah/masjid_al_jharam-nightview.jpg" // Updated path
       />
@@ -102,16 +102,16 @@ const MakkahPage = () => {
                   </div>
                 }
               />
-              <ExpandableCard title="Explore Masjid Al Haram" file="masjid-e-haram.json" />
+              <ExpandableCard title="Explore Masjid Al Haram" file="masjid-e-haram" />
             </section>
           )}
 
           {selected === 'Attractions' && (
-            <ExpandableCard title="Attractions in Makkah" file="makkah_at.json" />
+            <ExpandableCard title="Attractions in Makkah" file="makkah_at" />
           )}
 
           {selected === 'Holy Sites' && (
-            <ExpandableCard title="Holy Places in Makkah" file="makkah_hp.json" />
+            <ExpandableCard title="Holy Places in Makkah" file="makkah_hp" />
           )}
         </motion.div>
       </AnimatePresence>

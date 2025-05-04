@@ -1,20 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Card, Hero, PopupAd } from "../components/PageComponent";
+import { Card, HeroSection, PopupAd } from "../components/PageComponent";
 
 const HeroSections = () => {
 {window.scrollTo(0, 0)}
 
   return (
-    <Hero
+    <HeroSection
       backgroundImage="/images/makkah/masjid_al_jharam-nightview2.jpg"
-      title="Explore the beauty and spirituality of Makkah & Madina"
-      description="Your comprehensive guide to exploring Makkah and Madinah, the two holiest cities in Islam."
+      title="Explore the beauty and spirituality"
+      subtitle="Your comprehensive guide to exploring Makkah and Madinah, the two holiest cities in Islam."
+      hadithText= "“(The performance of) Umra is an expiation for the sins committed (between it and the previous one). And the reward of Hajj Mabrur(the one accepted by Allah) is nothing except Paradise.”"
+      hadithSource="Prophet Muhammad (صلى الله عليه وسلم)"
     />
   );
 };
 
-// const ExploreSection = () => {
 //   return (
 //     <section className="py-12 px-4 md:px-12 bg-gray-50">
 //       <h2 className="text-3xl font-bold text-center mb-10">Explore Our Site</h2>
@@ -180,27 +181,11 @@ const HeartSoulSection = () => {
   );
 };
 
-function QuoteSection() {
-  return (
-    <section className="py-16 bg-gray-50 text-center">
-      <blockquote className="max-w-3xl mx-auto italic text-xl text-gray-800">
-        “(The performance of) Umra is an expiation for the sins committed
-        (between it and the previous one). And the reward of Hajj Mabrur
-        (the one accepted by Allah) is nothing except Paradise.”
-        <span className="block mt-4 font-semibold">
-          – Prophet Muhammad (صلى الله عليه وسلم)
-        </span>
-      </blockquote>
-    </section>
-  );
-}
-
 export const HomePage = () => {
   return (
     <div>
       <PopupAd />
       <HeroSections />
-      <QuoteSection />
       <ExploreSection />
       <HeartSoulSection />
     </div>
