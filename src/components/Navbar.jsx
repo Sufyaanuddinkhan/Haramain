@@ -21,6 +21,7 @@ useEffect(() => {
       <div className="w-full px-6 py-4 flex justify-between items-center">
         {/* Logo on the left */}
         <img src="images/DarkLogocUT.PNG" alt="Logo" className="h-10 w-auto" />
+        {/* <p className="text-white text-3xl mt-2">NextStop:Harmain</p> */}
 
         {/* Desktop Links in center */}
         <ul className="hidden md:flex gap-6 text-white font-medium mx-auto">
@@ -38,12 +39,12 @@ useEffect(() => {
           ))}
         </ul>
 
-        {/* Contact Us button on the right */}
+        {/* Contact Us button on the right
         <div className="hidden md:block">
           <button className="text-white hover:scale-110 transition-transform">
             Contact Us
           </button>
-        </div>
+        </div> */}
 
         {/* Mobile Hamburger Icon */}
         <div className="md:hidden text-white">

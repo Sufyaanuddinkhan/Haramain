@@ -5,7 +5,8 @@ import {
   Card,
   PlacesCards,
   ContactUs,
-  EnquiryForm
+  EnquiryForm,
+  ExpandableCard
 } from "../components/PageComponent";
 
 // Use public image
@@ -110,8 +111,8 @@ function TestimonialsSection() {
 function TeamSection() {
   const team = [
     {
-      name: "Sufiyan Khan",
-      title: "TL",
+      name: "Mohd Sufyaanuddin Khan",
+      title: "Team Lead",
       img: "https://via.placeholder.com/150",
     },
     {
@@ -166,7 +167,8 @@ function Aboutus() {
   return (
     <>
       <HeroSection
-        title="Reconnect with Your Faith, Let Us Guide You"
+        title="Next Stop: Haramain"
+        title2="Reconnect with Your Faith, Let Us Guide You"
         subtitle="Begin your sacred journey with confidence, comfort, and care."
         backgroundImage="/images/umrah/about2.jpg"
       />
@@ -180,7 +182,7 @@ function Aboutus() {
       />
 
       <div className="bg-gray-100 py-12 px-4 md:px-12 text-center">
-        <h2 className="text-3xl font-bold mb-8">Our Vision & Mission</h2>
+        <h2 className="text-5xl font-bold mb-8">Our Vision & Mission</h2>
         <div className="flex md:flex justify-center gap-6 flex-wrap">
           <Card
             title="Our Vision"
@@ -198,8 +200,10 @@ function Aboutus() {
       <div className="bg-gray-100 py-12 px-4 md:px-12 flex flex-col items-center space-y-12">
         <div className="text-center w-full max-w-7xl">
           <PlacesCards places={umrahPackages} title="Umrah Packages" />
+          
         </div>
         <div className="text-center w-full max-w-7xl">
+          
           <PlacesCards places={hajjPackages} title="Hajj Packages" />
         </div>
       </div>

@@ -14,6 +14,7 @@ import * as Yup from "yup";
 //herosection
 export const HeroSection = ({
   title,
+  title2,
   subtitle,
   backgroundImage,
   hadithText,
@@ -57,9 +58,12 @@ export const HeroSection = ({
           opacity,
         }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white break-words">
+        <h1 className="text-4xl md:text-7xl font-bold mb-4 text-white break-words">
           {title}
         </h1>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white break-words">
+          {title2}
+        </h2>
         <p className="text-lg md:text-xl text-white break-words">
           {subtitle}
         </p>

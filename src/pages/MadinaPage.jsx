@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { HeroSection, ImageTextSection, ExpandableCard } from '../components/PageComponent';
 import { FaMapMarkerAlt, FaMosque, FaKaaba, FaLandmark } from 'react-icons/fa';
 
@@ -52,6 +52,16 @@ const MadinaPage = () => {
           </div>
           </motion.nav>
 
+
+          <AnimatePresence mode="wait">
+        <motion.div
+          key={selected}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.5 }}
+          className="px-4 py-6 bg-white shadow-inner max-w-screen-xl mx-auto"
+        >
       {/* Dynamic Content Area */}
       <div className="px-4 py-6 bg-white shadow-inner max-w-screen-xl mx-auto">
         {selected === 'History' && (
@@ -88,7 +98,11 @@ const MadinaPage = () => {
         {selected === 'Holy Sites' && (
           <ExpandableCard title="Holy Places in Madina" file="madina_hp" />
         )}
+
       </div>
+      </motion.div>
+      </AnimatePresence>
+
     </div>
   );
 };
