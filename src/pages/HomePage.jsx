@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Card, HeroSection, PopupAd } from "../components/PageComponent";
 
 const HeroSections = () => {
-{window.scrollTo(0, 0)}
 
   return (
     <HeroSection
@@ -72,18 +71,18 @@ const ExploreSection = () => {
         </div>
         <div className="flex-shrink-0 w-64 sm:w-72 md:w-80">
           <Card
-            image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+            image="/images/umrah/homeumrah.avif"
             title="Umrah"
             description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
-            link="/makkah"
+            link="/umrah"
           />
         </div>
         <div className="flex-shrink-0 w-64 sm:w-72 md:w-80">
           <Card
-            image="/images/makkah/masjid_al_jharam-nightview2.jpg"
+            image="/images/hajj/homehajj.png"
             title="Hajj"
             description="The sacred city of Makkah, home to the Kaaba and Masjid al-Haram."
-            link="/makkah"
+            link="/hajj"
           />
         </div>
       </div>

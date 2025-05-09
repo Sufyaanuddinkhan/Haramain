@@ -17,15 +17,15 @@ useEffect(() => {
 }, [location.pathname]);
 
   return (
-    <nav className="bg-black bg-opacity-80 shadow-md sticky top-0 z-50 py-2">
+    <nav className="bg-black bg-opacity-80 shadow-md sticky top-0 z-50 ">
       <div className="w-full px-6 py-4 flex justify-between items-center">
         {/* Logo on the left */}
-        <img src="images/DarkLogocUT.PNG" alt="Logo" className="h-10 w-auto" />
+        <img src="images/DarkLogocUT.PNG" alt="Logo" className="h-20 block w-auto rounded-4xl" />
         {/* <p className="text-white text-3xl mt-2">NextStop:Harmain</p> */}
 
         {/* Desktop Links in center */}
-        <ul className="hidden md:flex gap-6 text-white font-medium mx-auto">
-          {["Home", "Makkah", "Madina", "Hajj", "Umrah", "About"].map((link) => (
+        <ul className="hidden md:flex gap-9 mr-120 text-white font-medium text-xl mx-auto leading-none">
+          {["Home", "Makkah", "Madina", "Hajj", "Umrah","Packages", "About"].map((link) => (
             <motion.li
               key={link}
               initial={{ opacity: 0 }}
@@ -63,7 +63,7 @@ useEffect(() => {
       >
         {isOpen && (
           <ul className="flex flex-col gap-4 text-white font-medium">
-            {["Home", "Makkah", "Madina", "Hajj", "Umrah", "About"].map((link) => (
+            {["Home", "Makkah", "Madina", "Hajj", "Umrah","Packages", "About"].map((link) => (
               <motion.li
                 key={link}
                 initial={{ opacity: 0 }}
