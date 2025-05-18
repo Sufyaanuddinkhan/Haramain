@@ -1,12 +1,52 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ 🕋 Makkah-Madina Tour Guide 🌍
 
-Currently, two official plugins are available:
+A comprehensive web application built to assist new visitors and pilgrims in exploring the sacred cities of **Makkah** and **Madinah**. The platform provides rich historical context, spiritual significance, live weather updates, interactive maps, and user-friendly navigation to key Islamic landmarks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ Live Demo
+https://nextstop-haramain.netlify.app/
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ 📌 Features
+
+- 🕌 Sacred Place Explorer – Detailed descriptions, history, and significance of major Islamic sites.
+- 🔍 Search Functionality – Find places of interest with ease.
+- 📷 Gallery View – Visual representations of each landmark.
+- ✅ Responsive Design – Optimized for mobile, tablet, and desktop.
+
+🛠️ Tech Stack
+
+| Frontend  | Backend    | Database     |
+|-----------|------------|--------------|
+| HTML      | Node.js    | MongoDB      |
+| CSS       | Express.js |              
+| JavaScript|            |              
+| Tailwind CSS |         |      
+
+
+Project Structure
+
+makkah-madina-tour/
+│
+├── public/                # Static files
+├── src/                   # Frontend source code
+│   ├── components/        # Reusable UI components
+│   ├── pages/             # Each route/page
+│   └── assets/            # Images, fonts, etc.
+│
+├── backend/               # Express.js server
+│   └── models/            # MongoDB schemas (Contact, Enquiry, etc.)
+│
+├── .env                   # Environment variables
+├── package.json           # Project metadata and dependencies
+└── README.md              # Project overview
+```
+
+
+ 📧 Contact
+
+Created with ❤️ by
+     - [Developer Muzzamil](https://github.com/Developer-Muzzamil)
+     - [Mohd Sufyaanuddin Khan](https://github.com/Sufyaanuddinkhan)
+
+For inquiries or suggestions: `developer.muzzamil@gmail.com`, 'khansufyaan315@gmail.com'
